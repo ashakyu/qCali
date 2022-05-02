@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+
+
+.mb-3{
+  position:relative;
+  margin:10px 0;
+  width : 600px;
+}
+
+.mb-3 > form-control{
+  background:transparent;
+  border:none;
+  border-bottom: solid 1px #ccc;
+  padding:20px 0px 5px 0px;
+  font-size:14pt;
+  width:100%;
+}
+
+div #login_wrapper{
+	position:absolute;
+	top:25%;
+	left:40%;
+	padding : 10px 10px 10px 10px;
+	border : 1px solid grey;
+}
+
+div .mb-3 form-check{
+	position:relative
+}

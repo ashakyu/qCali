@@ -11,7 +11,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/admin/main/adminHeader.jsp"></jsp:include>
 
-	<h3>총 질문 수  : ${questionTotal }</h3>
+	<h3>총 질문 수  : ${questionTotal }개</h3>
 	<table border="1">
 		<tr>
 			<th>NO</th>
