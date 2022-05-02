@@ -10,9 +10,9 @@
 		resultType="com.group.exam.board.vo.NoticeAdminVo">
 		select * from (select ROWNUM, N.NOTICE_SEQ, N.NOTICE_TITLE,to_char(N.NOTICE_REG_DAY,'yy.mm.dd') notice_reg_day,
 		A.ADMIN_NICKNAME
-		from NOTICE N right join ADMIN A ON N.ADMIN_SEQ = 0
-		order by NOTICE_REG_DAY desc)
-		where ROWNUM between 0 and 2
+		from NOTICE N join ADMIN A ON N.ADMIN_SEQ = 0
+		order by notice_seq desc)
+		where ROWNUM between 1 and 2
 	</select>
 	<insert id="insertBoard" parameterType="boardVo">
 		insert into BOARD

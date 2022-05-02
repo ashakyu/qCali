@@ -112,7 +112,7 @@
 	<!-- popup으로 띄울 member정보 -->
 	<select id="memberInfo" parameterType="Long" resultType="com.group.exam.member.command.MemberInfoCommand">
 		select member_seq, member_id, member_nickname, to_char(member_reg_day,'yyyy-mm-dd') member_reg_day ,
-		to_char(member_birth_day,'yyyy-mm-dd') member_birth_day, member_level	
+		to_char(member_birth_day,'mm-dd') member_birth_day, member_level	
 		from member where member_seq = #{memberSeq}
 	</select>
 
