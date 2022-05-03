@@ -89,7 +89,7 @@ thead {
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/main/sidebar_board.jsp"></jsp:include>
-	<%-- <jsp:include page="/WEB-INF/views/calendar/calendar.jsp"></jsp:include> 캘린더--%>
+	<jsp:include page="/WEB-INF/views/calendar/calendar.jsp"></jsp:include>
 	<div class="container">
 
 		<%-- 질문 출력 및 글쓰기 버튼 --%>
