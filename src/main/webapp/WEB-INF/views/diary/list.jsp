@@ -20,6 +20,12 @@ li {
 	float: left;
 	margin-left: 5px;
 }
+thead {
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
+	background: #e9ecef;
+}
 </style>
 
 <title>Insert title here</title>
@@ -39,20 +45,21 @@ li {
 		</c:if>
 	</c:if>
 
-	게시글 수 : ${diaryTotal }
 	<h3>${diaryNickname} 님의 일기장</h3>
+	등록된 일기 수 : ${diaryTotal }
 
-	<table class="table">
+	<table class="table table-hover">
+		<thead>
 		<tr>
-			<th>NO</th>
-			<th>일기제목</th>
-			<th>닉네임</th>
-			<th>일기 쓴 날짜</th>
-			<th>일기 좋아요</th>
-			<th>일기 카운트</th>
-			<th>공개여부</th>
+			<th scope="col">글번호</th>
+			<th scope="col">제목</th>
+			<th scope="col">닉네임</th>
+			<th scope="col">작성일</th>
+			<th scope="col">좋아요</th>
+			<th scope="col">조회수</th>
+			<th scope="col">공개여부</th>
 		</tr>
-
+		</thead>
 	
 		<c:if test="${ empty diaryList}">
 			<tr>
@@ -64,7 +71,7 @@ li {
 			<c:forEach var="list" items="${diaryList}">
 				
 				<tr>
-					<td>${list.rn}</td>
+					<td scope="row">${list.rn}</td>
 						<c:if test="${memberLogin.memberSeq == testMemberSeq}" >
 					<td><a href="<c:url value='/diary/detail?diarySeq=${list.diarySeq}'/>">${list.diaryTitle}</a>
 					</td>
