@@ -64,7 +64,14 @@ a:active {
 		<c:forEach var="m" items="${members }">
 		<tr>
 			<td>${m.memberId}</td>
-			<td>${m.memberNickname }</td>
+			<td><div class="dropdown">
+				<a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+					${m.memberNickname }</a>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					    <li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${m.memberSeq}">Diary 보기</a></li>
+					    <li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${m.memberSeq}">쓴 글 보기 </a></li>
+					  </ul>
+					</div></td>
 			<td>${m.memberRegDay }</td>
 			<td>${m.memberAuth }</td>
 			<td>${m.memberLevel}</td>
