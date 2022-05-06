@@ -10,20 +10,19 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <meta charset="UTF-8">
-<title>${diaryList.diaryTitle}</title>
+<title>QCali :: ${diaryList.diaryTitle}</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/main/sidebar_board.jsp"></jsp:include>
 <div class="container">
-
-	<c:if test="${!empty memberLogin}">
-		<a href="<c:url value='/member/logout'/>"><button>로그아웃</button></a>
-		<a href="<c:url value='/diary/write/${memberLogin.memberSeq}'/>"><button>일기쓰기</button></a>
-	</c:if>
-
+	<div class="row">
+		<div class="col">
+			<h3>${diaryNickname} 님의 일기장</h3>
+		</div>
+		
 	<table class="table">
-	
+		
 	<c:if test="${ empty diaryList}">
 			<tr>
 				<td colspan="7">없는 일기입니다.</td>
@@ -31,6 +30,7 @@
 	</c:if>
 		
 	<c:if test="${ !empty diaryList}">
+
   	<thead>
 		<tr>
 			<th>일기제목</th><td>${diaryList.diaryTitle}</td>
@@ -41,10 +41,17 @@
 			<th>작성일</th>	<td>${diaryList.diaryRegday}</td>
 			<th>조회수</th><td>${diaryList.diaryCount}</td>
 			<th>좋아요</th><td>${diaryList.diaryLike}</td>
-		</tr>
-		<c:if test="${!empty diaryList.diaryImg }">
+			<td> <!-- 하트버튼 -->
+				<div style="text-align: right;">
+				<a class="text-dark heart" style="text-decoration-line: none;">
+					<img id="heart" src="" height="30px">
+				</a>
+				</div>
+			</td>
+		</tr>	
+		<c:if test="${!empty diaryList.diaryImg }"> <!-- 이미지 있으면 -->
 		<tr>
-			<td><img src="/diaryImg${diaryList.diaryImg }" width="200" ></td>			
+			<td colspan="6"><img src="/diaryImg${diaryList.diaryImg }" width="200" ></td>			
 		</tr>
 		</c:if>
 <%-- 		<c:if test="${empty diaryList.diaryImg }">
@@ -59,26 +66,31 @@
 		
 
 
-			<div style="text-align: right;">
-				<a class="text-dark heart" style="text-decoration-line: none;">
-					<img id="heart" src="" height="30px">
-				</a>
-			</div>
+		
 
 
-			<c:if test="${myArticle == true}">
-
-				<a href="<c:url value='/diary/edit/${diaryList.diarySeq}'/>"><button>일기
-						수정</button></a>
-
-
-				<button onclick="delete_button()">일기 삭제</button>
-				
-				<button onclick="deleteImg_button()">첨부파일 삭제</button>
-				
+		<c:if test="${myArticle == true}">
+		<div class="col-2">
+			<a href="<c:url value='/diary/edit/${diaryList.diarySeq}'/>">
+			<button class="btn btn-primary">일기 수정</button></a>
+		</div>
+		<div class="col-2">
+			<button class="btn btn-primary" onclick="delete_button()">일기 삭제</button>
+		</div>
+		<div class="col-2">	
+			<button class="btn btn-primary" onclick="deleteImg_button()">첨부파일 삭제</button>
+		</div>	
 
 			</c:if>
-
+		<div class="col-2">	
+			<c:if test="${!empty memberLogin}">
+				<c:set var ="memberLogin.memberSeq" value="${memberLogin.memberSeq}"/>
+				<c:set var ="testMemberSeq" value="${testMemberSeq}"/>							
+				<c:if test="${memberLogin.memberSeq != testMemberSeq}">
+					<a href="<c:url value='/diary/list/${memberLogin.memberSeq}'/>"><button class="btn btn-primary">내 일기장 가기</button></a>
+				</c:if>
+			</c:if>
+		</div>
 
 
 
@@ -86,7 +98,7 @@
 
 
 	</table>
-	
+	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
@@ -106,7 +118,7 @@
 				console.log(that.prop('name'));
 				var sendData = {
 					'diarySeq' : '${diarySeq}',
-					'heart' : that.prop('name'),
+					'diaryHeart' : that.prop('name'),
 				};
 				$.ajax({
 					url : '<c:url value="/diary/heart"/>',
