@@ -4,5 +4,5 @@
     <script>
 
 	alert("${msg}");
-	document.location.href="<c:url value='/main'/>";
+	document.location.href="<c:url value='/index'/>";
 </script>

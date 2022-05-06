@@ -34,14 +34,14 @@
 
 </head>
 
-<title>QCali :: 회원가입</title>
+<title>QCali :: 로그인</title>
 
 
 
 </head>
 <body >
 <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/main/sidebar_board.jsp"></jsp:include>
+
 
 <div class="container"  style="text-align: center">
 

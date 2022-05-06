@@ -54,7 +54,7 @@
 				<form:errors path="boardContent" /></div>
 
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<input type="submit" value="수정하기" class="btn btn-secondary"/>
+		<input type="submit" value="수정하기" class="btn btn-default"/>
 		</div>
 	</form:form>
 

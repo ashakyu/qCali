@@ -66,7 +66,8 @@ public class BoardController {
 	}
 
 	@GetMapping(value = "/write")
-	public String insertBoard(@RequestParam Long questionSeq, @ModelAttribute("boardData") BoardVo boardVo, HttpSession session, Model model) {
+	public String insertBoard(@RequestParam Long questionSeq, @ModelAttribute("boardData") BoardVo boardVo,
+			HttpSession session, Model model) {
 
 		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
 		// 로그인 X
@@ -82,7 +83,6 @@ public class BoardController {
 			return "member/member_alert/alertGoBoardList";
 
 		}
-		
 
 		if (num == 0) {
 			num = boardService.currentSequence();
@@ -136,7 +136,7 @@ public class BoardController {
 			}
 		}
 
-		return "redirect:/board/list";
+		return "redirect:/board/todayArticle";
 	}
 
 	@PostMapping(value = "/ckUpload")
@@ -231,7 +231,7 @@ public class BoardController {
 		model.addAttribute("pageMaker", pageCommand);
 		model.addAttribute("boardTotal", total);
 
-		//페이지처리 url
+		// 페이지처리 url
 		model.addAttribute("lastUrl", "list");
 
 		if (num == 0) {
@@ -246,19 +246,11 @@ public class BoardController {
 		model.addAttribute("boardQuestion", question);
 		System.out.println(question);
 
-		// 공지사항
-		List<NoticeAdminVo> notice = boardService.noticelist();
-		System.out.println(notice);
-		model.addAttribute("notice", notice);
-		
-		
-		// 캘린더 
+		// 캘린더
 		List<CalendarVo> listCal = null;
 		listCal = calendarService.calendarList();
-		
+
 		model.addAttribute("listCal", listCal);
-		
-		
 
 		return "board/list";
 	}
@@ -306,7 +298,7 @@ public class BoardController {
 			return "member/member_alert/alertGoMain";
 		}
 
-		return "redirect:/board/list";
+		return "redirect:/board/todayArticle";
 	}
 
 	// 게시글 삭제
@@ -326,7 +318,7 @@ public class BoardController {
 			return "member/member_alert/alertGoMain";
 		}
 
-		return "redirect:/board/list";
+		return "redirect:/board/todayArticle";
 	}
 
 	// 다른회원 or 내 글 모아보기
@@ -346,7 +338,7 @@ public class BoardController {
 		model.addAttribute("pageMaker", pageCommand);
 
 		model.addAttribute("searchMember", memberSeq);
-		return "board/memberArticleList";
+		return "/board/memberArticleList";
 	}
 
 	// 오늘 올라온 글 보기
@@ -358,12 +350,13 @@ public class BoardController {
 		List<BoardlistCommand> list = boardService.boardListTodayArticle(cri);
 		model.addAttribute("boardList", list);
 
+	
+
 		PagingVo pageCommand = new PagingVo();
 		pageCommand.setCri(cri);
 		pageCommand.setTotalCount(total);
 		model.addAttribute("boardTotal", total);
 		model.addAttribute("pageMaker", pageCommand);
-
 
 		// 페이지처리 url
 		model.addAttribute("lastUrl", "todayArticle");
@@ -381,12 +374,16 @@ public class BoardController {
 		model.addAttribute("boardQuestion", question);
 		System.out.println(question);
 
-		
-		// 캘린더 
+		// 캘린더
 		List<CalendarVo> listCal = null;
 		listCal = calendarService.calendarList();
-		
+
 		model.addAttribute("listCal", listCal);
+		
+		// 공지사항
+		List<NoticeAdminVo> notice = boardService.noticelist();
+		
+		model.addAttribute("notice", notice);
 
 		return "board/list";
 	}
@@ -421,6 +418,8 @@ public class BoardController {
 
 		QuestionAdayCommand question = boardService.questionselect(num);
 		model.addAttribute("boardQuestion", question);
+		
+
 
 		return "/board/searchArticleList";
 	}

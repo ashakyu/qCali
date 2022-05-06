@@ -213,7 +213,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardlistCommand> boardListTodayArticle(Criteria cri) {
 		// TODO Auto-generated method stub
-		return null;
+		return boardDao.boardListTodayArticle(cri);
 	}
 
 	@Override

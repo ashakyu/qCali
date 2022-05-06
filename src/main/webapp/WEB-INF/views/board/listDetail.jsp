@@ -29,8 +29,7 @@
 <style>
 .box {
 	width: 1300px;
-	padding-top: 3%;
-	padding-left: 15%;
+	margin: auto;
 }
 
 .board_title {
@@ -106,11 +105,11 @@
 		
 		<div style="margin-top: 2%; padding-left: 20%; float: right;">
 			<c:if test="${myArticle == true}">
-				<button type="button" class="btn btn-outline-info" id="noticeUpdate"
+				<button type="button" class="btn btn-default" id="noticeUpdate"
 					onclick="window:location='<c:url value='/board/edit?boardSeq=${boardList.boardSeq}'/>'">수정</button>
-				<button type="button" class="btn btn-outline-info"
+				<button type="button" class="btn btn-default"
 					onClick="deleteConfirm();">삭제</button>
-				<input type="button" class="btn btn-outline-info" value="목록"
+				<input type="button" class="btn btn-default" value="목록"
 					onclick="location.href='<c:url value='/board/list'/>'">
 			</c:if>
 		</div>
@@ -140,20 +139,18 @@
 
 
 
-		<hr />
-		<h5>댓글 : [ ${replyTotal} ] 개</h5>
-		&nbsp;&nbsp;
-		<div id="replyList"></div>
-
-		<div class="col-md-6">
-			<label for="memberNickname" id="memberNickname">작성자 :
-				${memberLogin.memberNickname}</label><br /> <label for="replyContent">
-				댓글 : </label>
-			<textarea class="form-control" id="replyContent" name="replyContent"></textarea>
-			<button type="button" class="btn btn-outline-success"
-				id="replywriteBtn" name="replywriteBtn">댓글 작성</button>
-		</div>
-
+				<!-- 댓글 입력 폼 -->
+   	<br><br><hr>
+	<h5>댓글 : [ ${replyTotal} ] 개</h5>&nbsp;&nbsp;
+	
+	<div class="col-md-6">
+		<label for="memberNickname" id="memberNickname">작성자 : ${memberLogin.memberNickname}</label><br/>
+		<label for="replyContent"> 댓글 : </label>
+		<textarea class="form-control" id="replyContent" name="replyContent"></textarea>
+		<button type="button" class="btn btn-default" id="replywriteBtn" name="replywriteBtn">댓글 작성</button>
+	</div>
+	
+	<div id="replyList" style="padding-bottom:10%;"></div>
 
 
 

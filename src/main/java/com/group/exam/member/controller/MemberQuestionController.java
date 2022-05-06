@@ -17,30 +17,33 @@ public class MemberQuestionController {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@RequestMapping(value = "/member/questionAdd", method = RequestMethod.GET)
-	public String questionAdd (HttpSession session) {
+	public String questionAdd(HttpSession session) {
+
+		// 로그인 세션
+		if (session.getAttribute("memberLogin") == null) {
+			return "/main";
+		}
+
 		return "/member/questionAddForm";
 	}
-	
+
 	@RequestMapping(value = "/member/questionAdd", method = RequestMethod.POST)
-	public String questionAdd (@RequestParam(required = false) String questionContent, HttpSession session, Model model) {
-		
-		
-		if (questionContent.length() <= 10) {
+	public String questionAdd(@RequestParam(required = false) String questionContent, HttpSession session,
+			Model model) {
+
+		if (questionContent.equals(null) || questionContent.length() <= 10) {
 			model.addAttribute("msg", "10자 이상 입력해 주세요.");
 			return "/member/questionAddForm";
 		}
-		
+
 		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");
-		
+
 		memberService.memberQuestionAdd(questionContent, command.getMemberSeq());
-		
-	
+
 		model.addAttribute("msg", "관리자 승인 후 등록 완료 됩니다.");
 		return "/member/member_alert/alertGoMain";
 	}
-	
-	
-	
+
 }

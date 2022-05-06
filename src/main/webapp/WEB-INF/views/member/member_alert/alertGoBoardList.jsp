@@ -3,5 +3,5 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	alert("${msg}");
-	document.location.href="<c:url value='/board/list'/>";
+	document.location.href="<c:url value='/board/todayArticle'/>";
 </script>
