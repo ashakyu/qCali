@@ -219,15 +219,14 @@ from MEMBER M right join BOARD B on M.MEMBER_SEQ = B.MEMBER_SEQ where B.BOARD_SE
 		resultType="com.group.exam.board.command.BoardlistCommand">
 
 		<![CDATA[
-					select * from 
+           select * from 
                 (select rownum as rn, BOARD_SEQ ,BOARD_TITLE, MEMBER_NICKNAME, BOARD_COUNT, BOARD_LIKE, MEMBER_SEQ,
                 TO_CHAR(BOARD_REG_DAY,'yyyy.mm.dd') BOARD_REG_DAY  from 
                     (select B.BOARD_SEQ ,B.BOARD_TITLE, M.MEMBER_NICKNAME, B.BOARD_COUNT, B.BOARD_LIKE, M.MEMBER_SEQ,
                B.BOARD_REG_DAY  from MEMBER M 
-                    right join BOARD B on B.MEMBER_SEQ = M.MEMBER_SEQ where to_char(B.BOARD_REG_DAY, 'yyyy.mm.dd')= to_char(sysdate, 'yyyy.mm.dd')  order by board_seq desc) 
+                    right join BOARD B on B.MEMBER_SEQ = M.MEMBER_SEQ  where TO_CHAR(BOARD_REG_DAY,'yyyy.mm.dd') = to_char(sysdate, 'yyyy.mm.dd') order by board_seq desc) 
                 order by rownum)
           where rn BETWEEN  #{rowStart} and #{rowEnd}
-		
 		
 		
 		]]>

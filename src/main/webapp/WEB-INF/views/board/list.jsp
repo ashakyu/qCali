@@ -43,7 +43,7 @@ thead {
 	display: table-header-group;
 	vertical-align: middle;
 	border-color: inherit;
-	background: #e9ecef;
+	background: #fff;
 }
 </style>
 
@@ -89,24 +89,7 @@ thead {
 
 			</div>
 
-			<c:if test="${ lastUrl eq 'list'}">
-				<%--공지사항 출력 --%>
-				<h4>공지사항</h4>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>제목</th>
-							<th>작성일</th>
-						</tr>
-					</thead>
-					<c:forEach var="n" items="${notice }">
-						<tr>
-							<td><a href="<c:url value='/notice/read/${n.noticeSeq}' />">${n.noticeTitle}</a></td>
-							<td>${n.noticeRegDay }</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>
+			
 
 
 			<%-- 검색 bar --%>
@@ -152,6 +135,30 @@ thead {
 
 
 			<table class="table table-hover">
+			<c:if test="${ lastUrl eq 'todayArticle'}">
+					<%--공지사항 출력 --%>
+
+				
+					<thead>
+						<tr>
+							<th colspan="2">공지사항</th>
+							
+							<th colspan="2">제목</th>
+							
+							
+							<th colspan="2">작성일</th>
+							
+						</tr>
+					</thead>
+					<c:forEach var="n" items="${notice }">
+						<tr>
+							<td colspan="2">No. ${n.noticeSeq }</td>
+							<td colspan="2"><a href="<c:url value='/notice/read/${n.noticeSeq}' />">${n.noticeTitle}</a></td>
+							<td colspan="2">${n.noticeRegDay }</td>
+						</tr>
+					</c:forEach>
+				
+			</c:if>
 				<thead>
 					<tr>
 						<th>NO</th>
@@ -170,6 +177,9 @@ thead {
 				</c:if>
 
 				<c:if test="${ !empty boardList}">
+					
+				
+				
 					<c:forEach var="list" items="${boardList}">
 						<tr>
 							<td>${list.rn}</td>

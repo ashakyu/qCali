@@ -44,10 +44,10 @@
 
 </div>
 
-<!--Copyright Area-->
+<!--Copyright Area
 <div class="footer-bottom">
     <p>Design By - <a href="#">Ground Tutorial</a>  </p>
-</div>
+</div>-->
 
 
 </footer>

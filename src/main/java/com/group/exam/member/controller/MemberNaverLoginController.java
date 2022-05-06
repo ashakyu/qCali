@@ -127,7 +127,7 @@ public class MemberNaverLoginController {
 
 		session.setAttribute("memberLogin", member); // 세션 생성
 
-		return "main";
+		return "/main";
 	}
 
 }

@@ -208,7 +208,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public List<BoardlistCommand> boardListTodayArticle(Criteria cri) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectList("boardListTodayArticle", cri);
 	}
 
 	@Override
