@@ -42,27 +42,42 @@ a:active {
 	<table id = "datatablesSimple" class="dataTable-table">
 		<thead>
 		<tr>
-			<th>NO</th>
+			<th class="text-center">NO</th>
 			<th>질문 내용</th>
 			<th>작성자</th>
+			<th>삭제</th>
 		</tr>
 		</thead>
 		
 		<tbody>
 		<c:forEach var="q" items="${questions }">
 			<tr>
-				<td>${q.no}</td>
+				<td class="text-center">${q.no}</td>
 				<td>${q.questionContent }</td>
 				<c:choose>
-					<c:when test="${empty q.memberNickname}">
-						<td>(null)</td>
+					<c:when test="${empty q.memberSeq}">
+						<td>탈퇴한 회원</td>
+					</c:when>
+					<c:when test="${q.memberSeq == -1 }">
+						<td>관리자</td>
 					</c:when>
 					<c:otherwise>
 						<td>${q.memberNickname }</td>
 					</c:otherwise>
 				</c:choose>
-			</tr>
-		
+			<td class="text-center"><button type="button" class="btn btn-danger" onClick="deleteConfirm();">삭제</button></td>
+				</tr>
+			
+			
+				<script>
+		function deleteConfirm(){
+			if(!confirm("정말 거부하시겠습니까?")){
+				return false;
+			}else{
+				location.href="<c:url value='/admin/question/delete?questionSeq='/>"+${q.questionSeq};
+			}
+		}	
+		</script>
 		</c:forEach>
 		</tbody>
 	</table>

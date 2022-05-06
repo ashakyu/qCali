@@ -15,12 +15,14 @@
 
 	<select id="qnaList" resultType="qnaVo"
 		parameterType="com.group.exam.utils.Criteria">
-		select * from (SELECT rownum as bno, qna.qna_no,qna.qna_seq , qna.qna_title,
+		select * from 
+		
+		(SELECT rownum as bno, qna.qna_no,qna.qna_seq , qna.qna_title,
 			qna.qna_content, qna.qna_writer,qna.qna_readcnt,
 			qna.qna_filename, qna.qna_filepath, qna.qna_root, qna.qna_step, qna.qna_indent,
 			qna.member_seq,
 			to_char(qna.qna_reg_day,'yyyy.mm.dd') qna_reg_day, m.member_nickname 
-		FROM
+			FROM
 			(SELECT ROWNUM qna_no, qna.* FROM
 				(SELECT * FROM qna
 				ORDER BY qna_root, qna_step DESC)

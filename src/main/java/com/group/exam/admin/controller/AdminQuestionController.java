@@ -38,7 +38,7 @@ public class AdminQuestionController {
 	public String questionList(HttpSession session, Model model, Criteria cri, QuestionRegistCommand questionRegistCommand) {
 		
 		if(session.getAttribute("adminAuthInfoCommand") ==null) {
-			return "redirect:/main";
+			return "redirect:/index";
 		}else {
 			List<AdminQuestionMember> questions = adminService.questionList(cri);
 			model.addAttribute("questions", questions);
@@ -77,7 +77,7 @@ public class AdminQuestionController {
 			return "redirect:/admin/question/list";
 		}
 		if(session.getAttribute("adminAuthInfoCommand") == null) {
-			return "redirect:/main";
+			return "redirect:/index";
 		}else {
 			adminService.addQuestion(questionRegistCommand);
 			System.out.println(questionRegistCommand);
@@ -90,7 +90,7 @@ public class AdminQuestionController {
 		
 		if(session.getAttribute("adminAuthInfoCommand") == null) {
 			
-			return "redirect:/main";
+			return "redirect:/index";
 		}else {
 			List<AdminQuestionMember> questionAll = adminService.questionAllList(cri);
 			int questionTotal = adminService.countQuestionList();

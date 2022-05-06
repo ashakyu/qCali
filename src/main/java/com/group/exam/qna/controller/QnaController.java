@@ -70,7 +70,7 @@ public class QnaController {
 	@RequestMapping(value="/write", method= RequestMethod.GET)
 	public String insert(HttpSession session) {
 		if(session.getAttribute("adminAuthInfoCommand")==null && session.getAttribute("memberLogin")==null) {
-			return "/main";
+			return "/index";
 		}
 		return "/qna/write";
 	}

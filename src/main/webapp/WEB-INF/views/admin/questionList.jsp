@@ -44,7 +44,7 @@ a:active {
 <body class="sb-nav-fixed">
 	<jsp:include page="/WEB-INF/views/admin/main/adminHeader.jsp"></jsp:include>
 	<div class="container mt-5">
-	<a style="float: right;" href="${pageContext.request.contextPath}/admin/questionAll"> > 질문 목록 보기</a>
+	<a style="float: right;" href="${pageContext.request.contextPath}/admin/questionAll"> &lt; 질문 목록 보기   &gt; </a>
 	
 	<h2>질문 추가하기</h2>
 	<form:form action="${pageContext.request.contextPath}/admin/question/questionAdd" name ="questionAdd" commandName="questionRegistCommand" onsubmit="return nullCheck()">

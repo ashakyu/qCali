@@ -17,7 +17,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		}else if(session.getAttribute("adminAuthInfoCommand") == null 
 				&& session.getAttribute("memberLogin") == null) {
 				//session admin로그인하고 memberLogin 둘다 없으면 main으로 redirect하도록
-			response.sendRedirect(request.getContextPath()+"/main");
+			response.sendRedirect(request.getContextPath()+"/index");
 		}
 		
 		

@@ -49,7 +49,12 @@ a:active {
 	<br>
 	
 	<div class="shadow-none p-3 mb-5 bg-light rounded" style="border: 1px solid lightgrey;">
-		<h4 class="fw-bolder">${vo.qnaTitle }</h4>
+		<c:if test="${vo.qnaIndent == 0 }">
+		<h4 class="fw-bolder">문의 제목 : ${vo.qnaTitle }</h4>
+		</c:if>
+		<c:if test="${vo.qnaIndent == 1 }">
+		<h4 class="fw-bolder">답변 제목 : ${vo.qnaTitle }</h4>
+		</c:if>
 	</div>
 		
 	

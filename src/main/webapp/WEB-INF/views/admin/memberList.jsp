@@ -68,7 +68,7 @@ a:active {
 			<td>${m.memberRegDay }</td>
 			<td>${m.memberAuth }</td>
 			<td>${m.memberLevel}</td>
-			<td><button type="button" class="btn btn-danger" onclick="deleteConfirm();">삭제</button></td>
+			<td class="text-center"><button type="button" class="btn btn-danger" onclick="deleteConfirm();">삭제</button></td>
 				
 	
 		</tr>

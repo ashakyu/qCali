@@ -32,7 +32,7 @@ public class AdminMemberController {
 		
 		if(session.getAttribute("adminAuthInfoCommand") == null) {
 			
-			return "redirect:/main";
+			return "redirect:/index";
 		}else {
 			List<MemberVo> members = adminService.selectMember(cri);
 			model.addAttribute("members", members);

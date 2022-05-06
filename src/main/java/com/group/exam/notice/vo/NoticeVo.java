@@ -6,11 +6,28 @@ public class NoticeVo {
 	private String noticeContent;
 	private String noticeRegDay;
 	private Long adminSeq;
+	private Long rn;
+	
+	
 
 	public NoticeVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Long getRn() {
+		return rn;
+	}
+
+
+
+	public void setRn(Long rn) {
+		this.rn = rn;
+	}
+
+
 
 	public NoticeVo(String noticeTitle, String noticeContent) {
 		super();

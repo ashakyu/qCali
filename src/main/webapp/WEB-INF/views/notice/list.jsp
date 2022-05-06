@@ -35,7 +35,7 @@
 		<tbody>
 			<c:forEach var ="notice" items="${notice}" varStatus="loop">
 			<tr>
-				<th>${notice.noticeSeq}</th>
+				<th>${notice.rn}</th>
 				<td><a href="<c:url value="/notice/read/${notice.noticeSeq}"/>">${notice.noticeTitle}</a></td>
 				<td>${notice.noticeRegDay}</td>
 			</tr>

@@ -43,12 +43,9 @@ a:active {
 	
 	<!-- 목록 -->
 	
-	<div class="container mt-3">
-	<h2 class="m-3">Q&A</h2>
-	<h5 style="float: right;">총 게시물 수 : ${boardTotal }개</h5>
-	
-
-	<table class ="table table-striped" >
+	<div class="container mt-3">	
+	<table class ="table table-striped caption-top" >
+		<caption>Q&A    |  ${boardTotal} 개</caption>
 		<thead>
 		<tr>
 			<th>번호</th>

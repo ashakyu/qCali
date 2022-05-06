@@ -28,7 +28,7 @@ public class AdminBoardController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Model model, Criteria cri, HttpSession session) throws Exception{
 		if(session.getAttribute("adminAuthInfoCommand") == null) {
-			return "redirect:/main";
+			return "redirect:/index";
 		}else {
 		model.addAttribute("boards", adminService.boardList(cri));
 		
@@ -49,7 +49,7 @@ public class AdminBoardController {
 	@RequestMapping(value="/detail/{boardSeq}")
 	public String detail(@PathVariable("boardSeq") Long boardSeq, Model model, HttpSession session) {
 		if(session.getAttribute("adminAuthInfoCommand") == null) {
-			return "redirect:/main";
+			return "redirect:/index";
 		}else {
 		AdminBoardCommand boards = adminService.selectBybseq(boardSeq);
 		if(boards ==null) {
