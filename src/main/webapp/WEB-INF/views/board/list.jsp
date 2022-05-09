@@ -188,9 +188,12 @@ thead {
 												function popUpInfo() {
 													let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${list.memberSeq}";
 													let name = "Member 정보";
-													let specs = "height=300, width= 250, status = no, location= no, top=100, left=100";
-													window.open(url, name,
-															specs);
+													
+													let popupX = (window.screen.width / 2) - (300 / 2);
+													let popupY= (window.screen.height / 2) - (350 / 2);
+					
+													let specs = 'height=350, width= 300, toolbar=no, status=no, menubar=no, resizable=yes, location=no, left='+ popupX + ', top='+ popupY;
+													window.open(url, name, specs);
 												}
 											</script>
 					</c:forEach>

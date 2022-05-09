@@ -150,7 +150,7 @@ public class BoardController {
 		response.setContentType("text/html;charset=utf-8");
 
 		// 서버의 업로드할 물리적 위치
-		String resources = "C://resources/upload";
+		String resources = "C:/qCali/resources/upload";
 		String folder = resources + "/" + "board" + "/" + new SimpleDateFormat("yyyy/MM/dd").format(new Date());
 
 		// 파일 이름
