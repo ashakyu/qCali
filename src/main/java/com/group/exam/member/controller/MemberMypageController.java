@@ -30,7 +30,7 @@ import com.group.exam.utils.Criteria;
 import com.group.exam.utils.PagingVo;
 
 @Controller
-@RequestMapping(value = "/member/mypage")
+@RequestMapping(value = "/member")
 public class MemberMypageController {
 
 	private MemberService memberService;
@@ -51,7 +51,7 @@ public class MemberMypageController {
 		this.mss = mss;
 	}
 
-	@GetMapping(value = "/confirmPwd")
+	@GetMapping(value = "/mypage/confirmPwd")
 	public String confirmPwd(String memberPassword, HttpSession session, Model model, Criteria cri) {
 
 		boolean confirmPW = false;
@@ -82,9 +82,32 @@ public class MemberMypageController {
 		model.addAttribute("confirmPW", confirmPW);
 		return "/member/mypage";
 	}
+	
+	@GetMapping(value = "/mypage")
+	public String confirmPwd(@RequestParam int page, @RequestParam int perPageNum,@RequestParam int memberSeq,  HttpSession session, Model model, Criteria cri) {
+
+		boolean confirmPW = true;
+		
+		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");
+		
+		// 마이페이지에 본인 쓴 글 바로 출력
+		int total = boardService.mylistCount(command.getMemberSeq());
+
+		List<BoardlistCommand> list = boardService.boardMyList(cri, command.getMemberSeq());
+		model.addAttribute("boardList", list);
+
+		PagingVo pageCommand = new PagingVo();
+		pageCommand.setCri(cri);
+		pageCommand.setTotalCount(total);
+		model.addAttribute("boardTotal", total);
+		model.addAttribute("pageMaker", pageCommand);
+
+		model.addAttribute("confirmPW", confirmPW);
+		return "/member/mypage";
+	}
 
 	// 마이페이지 가기 전에 비밀번호 체크
-	@PostMapping(value = "/confirmPwd")
+	@PostMapping(value = "/mypage")
 	public String confirmPwd(@RequestParam String memberPassword, Model model, HttpSession session, Criteria cri) {
 
 		boolean confirmPW = false;
@@ -120,13 +143,13 @@ public class MemberMypageController {
 	}
 
 	// 비밀번호 변경
-	@GetMapping(value = "changePwd")
+	@GetMapping(value = "/mypage/changePwd")
 	public String changePwd() {
 		return "/member/changePwdForm";
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/changePwd", produces = "application/json", method = RequestMethod.POST)
+	@RequestMapping(value = "/mypage/changePwd", produces = "application/json", method = RequestMethod.POST)
 	public boolean changePwd(@RequestBody MemberchangePwd changepwdData, HttpSession session) {
 
 		boolean result = false;
@@ -175,13 +198,13 @@ public class MemberMypageController {
 	}
 
 	// 닉네임 변경
-	@GetMapping(value = "/changeNickname")
+	@GetMapping(value = "/mypage/changeNickname")
 	public String changeNickname(HttpSession session) {
 
 		return "/member/changeNicknameForm";
 	}
 
-	@PostMapping(value = "/changeNickname")
+	@PostMapping(value = "/mypage/changeNickname")
 	@ResponseBody
 	public void changeNickname(@RequestBody String memberNickname, HttpSession session, Model model) {
 
@@ -197,7 +220,7 @@ public class MemberMypageController {
 	}
 
 	// 이메일 인증 번호 재발급
-	@GetMapping(value = "/mailReissue")
+	@GetMapping(value = "/mypage/mailReissue")
 	public String mailReissue(HttpSession session, Model model) {
 		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
 
@@ -228,14 +251,14 @@ public class MemberMypageController {
 	
 
 	// 회원 탈퇴
-	@GetMapping(value = "/delete")
+	@GetMapping(value = "/mypage/delete")
 	public String deleteMember(@RequestParam String memberSeq) {
 
 		return "/member/deleteForm";
 
 	}
 
-	@PostMapping(value = "/delete")
+	@PostMapping(value = "/mypage/delete")
 	public String deleteMember(@RequestParam String memberPassword, Model model, HttpSession session) {
 
 		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");

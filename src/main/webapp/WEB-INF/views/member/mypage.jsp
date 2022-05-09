@@ -54,7 +54,7 @@
 
 		
 <br><br><br>	
-<form action="${pageContext.request.contextPath}/member/mypage/confirmPwd" method="POST">
+<form action="${pageContext.request.contextPath}/member/mypage" method="POST">
   <div class="mb-3 row">
     <label class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
@@ -167,20 +167,20 @@
 		<ul class="pagination justify-content-center">
 				<c:if test="${pageMaker.prev }">
 					<li class="page-item disabled"><a class="page-link"
-						href="confirmPwd${pageMaker.makeQuery(pageMaker.startPage - 1) }&memberSeq=${memberLogin.memberSeq}">Previous</a>
+						href="mypage${pageMaker.makeQuery(pageMaker.startPage - 1) }&memberSeq=${memberLogin.memberSeq}">Previous</a>
 					</li>
 				</c:if>
 
 				<c:forEach var="currentPage" begin="${pageMaker.startPage }"
 					end="${pageMaker.endPage }">
 					<li class="page-item" <c:out value="${pageMaker.cri.page == currentPage ? 'class=active' : ''}"/>><a class="page-link"
-						href="confirmPwd${pageMaker.makeQuery(currentPage) }&memberSeq=${memberLogin.memberSeq}">${currentPage }</a></li>
+						href="mypage${pageMaker.makeQuery(currentPage) }&memberSeq=${memberLogin.memberSeq}">${currentPage }</a></li>
 				</c:forEach>
 
 				
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
 				<li class="page-item"><a class="page-link"
-						href="confirmPwd${pageMaker.makeQuery(pageMaker.endPage + 1) }&memberSeq=${memberLogin.memberSeq}'/>">Next</a>
+						href="mypage${pageMaker.makeQuery(pageMaker.endPage + 1) }&memberSeq=${memberLogin.memberSeq}'/>">Next</a>
 					</li>
 				</c:if>
 			</ul>

@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -124,11 +125,12 @@ public class MemberNaverLoginController {
 
 			// 4.파싱 닉네임 세션으로 저장
 
-			session.setAttribute("memberLogin", member); // 세션 생성
+			
 
-			return "redirect:/board/todayArticle";
 		}
+		session.setAttribute("memberLogin", member); // 세션 생성
 		return "redirect:/board/todayArticle";
+
 
 	}
 

@@ -12,11 +12,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		String path = request.getRequestURI();
-		if(path.contains("/login") || path.contains("/insert") || path.contains("/findPwd")) {
+		if(path.contains("/login") || path.contains("/insert") || path.contains("/findPwd")|| path.contains("/callback")) {
 			return true;
 		}else if(session.getAttribute("adminAuthInfoCommand") == null 
 				&& session.getAttribute("memberLogin") == null) {
 				//session admin로그인하고 memberLogin 둘다 없으면 main으로 redirect하도록
+	
 			response.sendRedirect(request.getContextPath()+"/index");
 		}
 		
