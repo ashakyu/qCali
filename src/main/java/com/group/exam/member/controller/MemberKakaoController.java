@@ -111,7 +111,7 @@ public class MemberKakaoController {
 		
 		session.setAttribute("memberLogin", member);
 
-		return "/index";
+		return "redirect:/board/todayArticle";
 	}// end kakaoLogin()
 
 	public String getAuthorizationUrl(HttpSession session) {
