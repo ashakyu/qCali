@@ -11,6 +11,9 @@
 <%--닉네임 선택시, 드롭박스 구현 --%>
 <link href="<c:url value='/resources/static/css/dropdown.css'/> "
 	rel="stylesheet" type="text/css">
+	
+	<link href="<c:url value='/resources/static/css/question.css'/> "
+	rel="stylesheet" type="text/css">
 
 <!-- Bootstrap CSS -->
 <link
@@ -127,30 +130,10 @@ thead {
 
 
 			<table class="table table-hover">
-			<c:if test="${ lastUrl eq 'todayArticle'}">
+		
 					<%--공지사항 출력 --%>
 
 				
-					<thead>
-						<tr>
-							<th colspan="2">공지사항</th>
-							
-							<th colspan="2">제목</th>
-							
-							
-							<th colspan="2">작성일</th>
-							
-						</tr>
-					</thead>
-					<c:forEach var="n" items="${notice }">
-						<tr>
-							<td colspan="2">No. ${n.noticeSeq }</td>
-							<td colspan="2"><a href="<c:url value='/notice/read/${n.noticeSeq}' />">${n.noticeTitle}</a></td>
-							<td colspan="2">${n.noticeRegDay }</td>
-						</tr>
-					</c:forEach>
-				
-			</c:if>
 				<thead>
 					<tr>
 						<th>NO</th>
@@ -158,9 +141,20 @@ thead {
 						<th>작성자</th>
 						<th>작성날짜</th>
 						<th>좋아요</th>
-						<th>카운트</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
+					<c:if test="${ lastUrl eq 'todayArticle'}">
+					<c:forEach var="n" items="${notice }">
+						<tr style="background-color: #dcdcdc">
+							<td >${n.noticeSeq }</td>
+							<td colspan="2"><a href="<c:url value='/notice/read/${n.noticeSeq}' />">${n.noticeTitle}</a></td>
+							<td colspan="3">${n.noticeRegDay }</td>
+						</tr>
+					</c:forEach>
+				
+			</c:if>
+
 
 				<c:if test="${ empty boardList}">
 					<tr>

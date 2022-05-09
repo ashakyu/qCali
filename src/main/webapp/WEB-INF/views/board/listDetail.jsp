@@ -121,7 +121,6 @@
 
 
 
-
 		<div >
 			<a class="text-dark heart" style="text-decoration-line: none;"> <img
 				id="heart" src="" height="30px">
@@ -169,11 +168,11 @@
 			
 			if (heartval > 0) {
 				console.log(heartval);
-			    $("#heart").prop("src", '<c:url value="/resources"/>'+"/static/images/like2.png");
+			    $("#heart").prop("src", '<c:url value="/resources"/>'+"/static/images/heart-fill.svg");
 				$(".heart").prop('name', heartval)
 			} else {
 				console.log(heartval);
-				$("#heart").prop("src", '<c:url value="/resources"/>'+"/static/images/like1.png");
+				$("#heart").prop("src", '<c:url value="/resources"/>'+"/static/images/heart.svg");
 				$(".heart").prop('name', heartval)
 			}
 			$(".heart").on("click", function() {
@@ -193,9 +192,9 @@
 						console.log("success:" + that.prop('name', data));
 				
 						if (data == 1) {
-							 $('#heart').prop("src",'<c:url value="/resources"/>'+"/static/images/like2.png");
+							 $('#heart').prop("src",'<c:url value="/resources"/>'+"/static/images/heart-fill.svg");
 						} else {
-							 $('#heart').prop("src",'<c:url value="/resources"/>'+"/static/images/like1.png");
+							 $('#heart').prop("src",'<c:url value="/resources"/>'+"/static/images/heart.svg");
 						}
 					}
 				});
@@ -211,9 +210,9 @@
 			function getreplylist() {
 				var replyurl = "${root}reply/";
 				var boardSeq = ${boardList.boardSeq};
-				var memberSeq = ${memberLogin.memberSeq};
+				var memberSeq = -1;
 				var adminAuthInfoCommand = window.sesstionStorage.getItem("adminAuthInfoCommand");
-				var adminAuthInfoCommand = window.sesstionStorage.getItem("memberLogin");
+				var memberLogin = window.sesstionStorage.getItem("memberLogin");
 				
 				
 				
