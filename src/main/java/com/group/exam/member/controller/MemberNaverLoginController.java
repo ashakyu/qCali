@@ -122,12 +122,14 @@ public class MemberNaverLoginController {
 			// api 상태 변경
 			memberService.updateApiStatus("naver", member.getMemberSeq());
 
+			// 4.파싱 닉네임 세션으로 저장
+
+			session.setAttribute("memberLogin", member); // 세션 생성
+
+			return "redirect:/board/todayArticle";
 		}
-		// 4.파싱 닉네임 세션으로 저장
+		return "redirect:/board/todayArticle";
 
-		session.setAttribute("memberLogin", member); // 세션 생성
-
-		return "/main";
 	}
 
 }

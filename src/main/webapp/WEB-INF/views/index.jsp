@@ -32,11 +32,23 @@
 
                             </div>
                         <div class="container">
+                        
+                        <c:if test="${memberLogin == null }">
                          <button class="btn btn-primary" id="submitButton" type="submit" style="float: right; padding-right:10;"
                             onclick="location.href='${pageContext.request.contextPath}/member/insert'">시작하기</button>
                     
                          <button class="btn btn-primary" id="submitButton" type="submit" style="float: right; padding-left: 10;"
                             onclick="location.href='${pageContext.request.contextPath}/member/login'">Login</button>
+                         </c:if>
+                         
+                            <c:if test="${memberLogin != null }">
+                         <button class="btn btn-primary" id="submitButton" type="submit" style="float: right; padding-right:10;"
+                            onclick="location.href='${pageContext.request.contextPath}/board/todayArticle'">오늘 올라온 글 보기</button>
+                    
+                         <button class="btn btn-primary" id="submitButton" type="submit" style="float: right; padding-left: 10;"
+                            onclick="location.href='${pageContext.request.contextPath}/member/logout'">Logout</button>
+                         </c:if>
+                         
                          </div>
                      
                       
