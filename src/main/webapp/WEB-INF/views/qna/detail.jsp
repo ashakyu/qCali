@@ -67,19 +67,21 @@ a:active {
 			</c:if>
 			<c:if test="${empty vo.qnaWriter }">
 				<c:if test="${!empty vo.memberNickname }">
-					<td><div class="dropdown">
-							<a class="dropbtn">${ vo.memberNickname}</a>
-							<div class="dropdown-content">
-								<a href="<c:url value='/board/mylist/memberSeq=${vo.memberSeq }'/> ">게시물 보기</a> 
-								<a href="${pageContext.request.contextPath }/diary/list/${vo.memberSeq }">일기장 보기</a>
-								<a href=# onclick="popUpInfo();">회원 정보 보기</a>
-							</div>
-						</div></td>
+				<td><div class="dropdown">
+					<a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">${vo.memberNickname}</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${vo.memberSeq}">게시물 보기</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${vo.memberSeq}">Diary 보기</a></li>
+			   				<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>								
+			   			</ul>
+					</div>
+				</td>
+
 				<script type="text/javascript">
 					function popUpInfo(){
-						let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${b.memberSeq}";
+						let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${vo.memberSeq}";
 						let name = "Member 정보";
-						let specs = "height=300, width= 250, status = no, location= no, top=100, left=100";
+						let specs = "height=350, width= 300, status = no, location= no";
 						window.open(url, name, specs);}
 				</script>
 						

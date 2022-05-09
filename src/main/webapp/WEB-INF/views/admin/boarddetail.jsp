@@ -63,7 +63,13 @@ a:active {
 				<caption>게시물 보기       |   </caption>
 			</table>
 			<p class="board_title">${boards.boardTitle }</p>
-			<p class="board_info_box">${boards.boardRegDay } by ${boards.memberNickname }</p>
+			<p class="board_info_box" style=" position: relative;  display: inline-block;">${boards.boardRegDay }   by</p><div class="dropdown" style=" position: relative;  display: inline-block;">
+				<a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">${boards.memberNickname }</a>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					    <li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${boards.memberSeq}">Diary 보기</a></li>
+					    <li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${boards.memberSeq}">쓴 글 보기 </a></li>
+					  </ul>
+					</div>
 			<p class="board_tag">조회수 : <c:out value="${boards.boardCount }"/>,  좋아요 : <c:out value="${boards.boardLike }"/>
 			<hr>
 			<h5 class="text-muted">질문 : ${boards. questionContent}</h5>

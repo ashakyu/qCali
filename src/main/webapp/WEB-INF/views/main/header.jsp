@@ -25,7 +25,12 @@
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath }/board/todayArticle">Today</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/notice/list">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/board/list">일문일답</a></li>
-          			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/diary/list/${memberLogin.memberSeq}">Diary</a></li>
+					<c:if test="${memberLogin != null }">
+					   <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/diary/list/${memberLogin.memberSeq}">Diary</a></li>
+					</c:if>
+					<c:if test="${adminAuthInfoCommand != null }">
+						<li class="nav-item"><a class="nav-link disabled" href="${pageContext.request.contextPath }/diary/list/${memberLogin.memberSeq}">Diary</a></li>
+					</c:if>
     		    	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/qna/list">Q&A</a></li>
  			     </ul>
  			     <ul class="nav jsutify-content.end">

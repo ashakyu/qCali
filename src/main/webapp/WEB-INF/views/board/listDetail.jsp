@@ -58,30 +58,28 @@
 			</table>
 
 			<p class="board_title">${boardList.boardTitle}</p>
-			<p class="board_info_box">${boardList.boardRegday} by
+			<p class="board_info_box" style=" position: relative;  display: inline-block;">${boardList.boardRegday} &nbsp;&nbsp;by
 				<c:if test="${empty boardList.memberNickname }">
 						탈퇴 회원
 				</c:if>
 				<c:if test="${!empty boardList.memberNickname }">
-					<div class="dropdown">
-						<a href="#" class="dropbtn">${ boardList.memberNickname}</a>
-						<div class="dropdown-content">
-							<a
-								href="<c:url value='/board/memberArticle?memberSeq=${boardList.memberSeq }'/> ">게시물
-								보기</a> <a
-								href="${pageContext.request.contextPath }/diary/list/${boardlist.memberSeq}">일기장
-								보기</a> <a href=# onclick="popUpInfo();">회원 정보 보기</a>
+					<div class="dropdown" style=" position: relative;  display: inline-block;">
+					<a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">${ boardList.memberNickname}</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${boardList.memberSeq}">게시물 보기</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${boardList.memberSeq}">Diary 보기</a></li>
+			   				<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>								
+			   			</ul>
+						</div>
 							<script type="text/javascript">
 										function popUpInfo() {
 											let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${boardList.memberSeq}";
 											let name = "Member 정보";
-											let specs = "height=300, width= 250, status = no, location= no, top=100, left=100";
+											let specs = "height=300, width= 250, status = no, location= no, top=50, left=50";
 											window.open(url, name, specs);
 										}
 									</script>
 
-						</div>
-					</div>
 				</c:if>
 			</p>
 			<p class="board_tag">조회수 : ${boardList.boardCount}, 공감 수 : ${boardList.boardLike}</p>
