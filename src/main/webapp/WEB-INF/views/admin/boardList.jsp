@@ -13,7 +13,7 @@ a:link {
   text-decoration: none;
 }
 a:visited {
-  color : grey;
+  color : black;
   text-decoration: none;
 }
 a:hover {
@@ -74,19 +74,43 @@ a:active {
 		<tr>
 			<td>${b.rn }</td>
 			<td><a href="<c:url value='/admin/board/detail/${b.boardSeq }' /> "> ${b.boardTitle }</a></td>
-				<c:choose>
-				<c:when test="${empty b.memberNickname }">
-					<td>(null)</td>
-				</c:when>
-				<c:otherwise>
-					<td>${b.memberNickname }</td>
-				</c:otherwise>
-				</c:choose>
+				<c:if test="${empty b.memberSeq }">
+					<!-- on delete set null로 회원이 null로 바뀔 경우 -->
+					<td>탈퇴회원</td>
+				</c:if>
+				
+				<c:if test="${!empty b.memberSeq }">
+					<!-- 회원의 닉네임이 있을 경우 -->
+				<td><div class="dropdown">
+					<a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">${b.memberNickname}</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${b.memberSeq}">게시물 보기</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${b.memberSeq}">Diary 보기</a></li>
+			   				<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>								
+			   			</ul>
+					</div>
+				</td>
+				</c:if>
 			<td>${b.boardRegDay }</td>
 			<td>${b.boardCount }</td>
 			<td>${b.boardLike }</td>
-		</tr>	
+		</tr>
+					<script type="text/javascript">
+						function popUpInfo(){
+							var popupX = (document.body.offsetWidth / 2) - (200 / 2);
+							// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+							var popupY= (document.body.offsetHeight / 2) - (300 / 2);
+							// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+
+
+							let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${b.memberSeq}";
+							let name = "Member 정보";
+				            let option = "width = 350, height = 300, top = 100, left = 200, location = no"
+							window.open(url, name,  'status=no, height=300, width=200, left='+ popupX + ', top='+ popupY);}
+						</script>	
 		</c:forEach>
+
 		</tbody>
 	</table>
 	</div>

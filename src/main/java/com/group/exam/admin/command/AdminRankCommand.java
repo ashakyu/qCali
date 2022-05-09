@@ -5,6 +5,15 @@ public class AdminRankCommand {
 	private String memberNickname;
 	private int count;
 	private int rank;
+	private Long memberSeq;
+	
+	
+	public Long getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(Long memberSeq) {
+		this.memberSeq = memberSeq;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

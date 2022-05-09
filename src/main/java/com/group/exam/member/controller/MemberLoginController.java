@@ -48,6 +48,11 @@ public class MemberLoginController {
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
 	public String handleLogin(@ModelAttribute("loginMemberData") LoginCommand logincommand, HttpSession session,
 			Model model) {
+		if(session.getAttribute("adminAuthInfoCommand")!= null)  {
+			return "redirect:/admin/main";
+		}else if(session.getAttribute("memberLogin") != null){
+			return "redirect:/board/stodayArticle";
+		}
 		// 네이버 로그인
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		System.out.println("네이버:" + naverAuthUrl);

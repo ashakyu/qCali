@@ -35,5 +35,6 @@ public interface AdminService {
 	public List<AdminRankCommand> memberRank();
 	public List<AdminRankCommand> memberRankReply();
 	public List<AdminRankCommand> memberRankDiary();
+	
 
 }

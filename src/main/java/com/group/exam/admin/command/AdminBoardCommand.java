@@ -10,10 +10,18 @@ public class AdminBoardCommand {
 	private String questionContent;
 	private String boardContent;
 	private String boardRegDay;
+	private Long memberSeq;
+	
 	
 	
 
 	
+	public Long getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(Long memberSeq) {
+		this.memberSeq = memberSeq;
+	}
 	public Long getBoardSeq() {
 		return boardSeq;
 	}

@@ -78,12 +78,10 @@ where no between #{rowStart} and #{rowEnd} ]]>
 	<select id="adminboardList" resultType="com.group.exam.admin.command.AdminBoardCommand" parameterType="com.group.exam.utils.Criteria">
 		<![CDATA[
  			select * from 
-                (select  ROWNUM as rn, BOARD_SEQ, BOARD_TITLE, MEMBER_NICKNAME, BOARD_COUNT, BOARD_LIKE,
-                TO_CHAR(BOARD_REG_DAY,'yyyy.mm.dd') BOARD_REG_DAY   from 
-                (select *
-                from MEMBER M 
- 			right join BOARD B 
- 			on M.MEMBER_SEQ = B.MEMBER_SEQ order by board_seq desc) order by rownum)
+                (select  ROWNUM as rn, BOARD_SEQ, BOARD_TITLE, MEMBER_NICKNAME,BOARD_COUNT, BOARD_LIKE,
+                TO_CHAR(BOARD_REG_DAY,'yyyy.mm.dd') BOARD_REG_DAY ,MEMBER_SEQ from 
+                (select B.BOARD_SEQ, B.BOARD_TITLE, M.MEMBER_NICKNAME, B.BOARD_COUNT, B.BOARD_LIKE, B.BOARD_REG_DAY , B.MEMBER_SEQ
+                from MEMBER M right join BOARD B  on M.MEMBER_SEQ = B.MEMBER_SEQ order by board_seq desc) order by rownum)
  			where rn BETWEEN #{rowStart} and #{rowEnd} 
  		]]> 
 	</select>
@@ -121,21 +119,21 @@ where no between #{rowStart} and #{rowEnd} ]]>
 	
 	<!-- rank 매기기(게시물 갯수 기준) -->
 	<select id="memberRank" resultType="com.group.exam.admin.command.AdminRankCommand">
-		select * from (select member.member_id, member.member_nickname, count(board.board_seq) as count,
+		select * from (select member.member_id, member.member_nickname, member.member_seq as member_seq, count(board.board_seq) as count,
 rank() over (order by count(board.board_seq) desc) as rank from board join 
-member on member.member_seq = board.member_seq group by member_id, member_nickname )where rank between 1 and 10
+member on member.member_seq = board.member_seq group by member_id, member_nickname ,member.member_seq)where rank between 1 and 5
 	</select>
 	
 	<select id="memberRankReply" resultType="com.group.exam.admin.command.AdminRankCommand">
-	select * from (select member.member_id, member.member_nickname, count(reply.reply_seq) as count,
+	select * from (select member.member_id, member.member_nickname, member.member_seq as member_seq, count(reply.reply_seq) as count,
 rank() over (order by count(reply.reply_seq) desc) as rank from reply join
-member on member.member_seq = reply.member_seq group by member_id, member_nickname)where rank between 1 and 10
+member on member.member_seq = reply.member_seq group by member_id, member_nickname,member.member_seq)where rank between 1 and 5
 	</select>
 	
 	<select id="memberRankDiary" resultType="com.group.exam.admin.command.AdminRankCommand">
-	select * from (select member.member_id, member.member_nickname, count(diary.diary_seq) as count,
+	select * from (select member.member_id, member.member_nickname, member.member_seq as member_seq, count(diary.diary_seq) as count,
 rank() over (order by count(diary.diary_seq) desc) as rank from diary join
-member on member.member_seq = diary.member_seq group by member_id, member_nickname)where rank between 1 and 10
+member on member.member_seq = diary.member_seq group by member_id, member_nickname,member.member_seq)where rank between 1 and 5
 	
 	</select>
 </mapper>
