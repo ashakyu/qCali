@@ -48,7 +48,7 @@ a:active {
 		<br>
 		
 	<textarea rows="50" cols="50" name="qnaContent" style="resize: none;"></textarea>
-	<script>CKEDITOR.replace('qnaContent', {height:400},{filebrowserUploadUrl:'${pageContext.request.contextPath}/qna/fileupload'});</script>
+	<script>CKEDITOR.replace('qnaContent', {height:400, filebrowserUploadUrl:'${pageContext.request.contextPath}/qna/fileupload'});</script>
 		
 		<br>
 		
@@ -58,5 +58,7 @@ a:active {
 	
 	<button type="submit" class="btn btn-secondary" style="float: right;">답변하기</button>
 	</form>
+<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
 </body>
 </html>

@@ -70,7 +70,7 @@ a:active {
 		aria-label=".form-control-lg example" />
 	<br>
 	<textarea rows="50" cols="50" name="qnaContent" style="resize: none;" required></textarea>
-			<script>CKEDITOR.replace('qnaContent',{filebrowserUploadUrl:'${pageContext.request.contextPath}/qna/fileupload'});</script>
+			<script>CKEDITOR.replace('qnaContent',{height: 400, filebrowserUploadUrl:'${pageContext.request.contextPath}/qna/fileupload'});</script>
 		<br>
 		<div class="mb-3">
 			<input class="form-control" type="file" name="uploadfile" />
@@ -83,6 +83,7 @@ a:active {
 
 
 
+<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 
 </body>
 </html>

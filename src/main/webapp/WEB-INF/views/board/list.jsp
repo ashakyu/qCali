@@ -9,18 +9,11 @@
 <meta charset="UTF-8" name="viewport"
 	content="width=device-width, initial-scale=1">
 <%--닉네임 선택시, 드롭박스 구현 --%>
-<link href="<c:url value='/resources/static/css/dropdown.css'/> "
-	rel="stylesheet" type="text/css">
-	
-	<link href="<c:url value='/resources/static/css/question.css'/> "
-	rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/static/css/dropdown.css'/> " rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/static/css/question.css'/> " rel="stylesheet" type="text/css">
 
 <!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+
 
 <style>
 input[type="search"] {
@@ -41,8 +34,7 @@ thead {
 	background: #fff;
 }
 </style>
-
-
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 
 <title>QCali :: BoardList</title>
 </head>
@@ -175,21 +167,23 @@ thead {
 
 							</td>
 
-							<td><c:if test="${empty list.memberNickname }">
-                  			탈퇴 회원
-            		   </c:if> <c:if test="${!empty list.memberNickname }">
-
-									<div class="dropdown">
-										<a href="#" class="dropbtn">${ list.memberNickname}</a>
-										<div class="dropdown-content">
-											<a
-												href="<c:url value='/board/memberArticle?memberSeq=${list.memberSeq }'/> ">게시물
-												보기</a> <a
-												href="${pageContext.request.contextPath }/diary/list/${list.memberSeq}">일기장
-												보기</a> <a
-												href="<c:url value='/board/memberArticle?memberSeq=${list.memberSeq }'/>"
-												onclick="popUpInfo();">회원 정보 보기</a>
-
+							<c:if test="${empty list.memberNickname }">
+                  			<td>탈퇴 회원</td> </c:if> 
+                  			<c:if test="${!empty list.memberNickname }">
+							<td>
+								<div class="dropdown">
+								<a href="#" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> ${ list.memberNickname}</a>
+											<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+												<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${list.memberSeq}">게시물 보기</a></li>
+												<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${list.memberSeq}">Diary 보기</a></li>
+								    			<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>
+											</ul>
+										</div></td>
+								</c:if>
+							<td>${list.boardRegday}</td>
+							<td>${list.boardLike}</td>
+							<td>${list.boardCount}</td>
+						</tr>
 											<script type="text/javascript">
 												function popUpInfo() {
 													let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${list.memberSeq}";
@@ -199,14 +193,6 @@ thead {
 															specs);
 												}
 											</script>
-										</div>
-									</div>
-								</c:if></td>
-							<td>${list.boardRegday}</td>
-							<td>${list.boardLike}</td>
-							<td>${list.boardCount}</td>
-						</tr>
-
 					</c:forEach>
 
 				</c:if>

@@ -66,7 +66,7 @@ a:active {
 		<br>
 		
 		<textarea rows="50" cols="50" name="qnaContent" style="resize: none;">${vo.qnaContent }</textarea>
-		<script>CKEDITOR.replace('qnaContent', {height:400},{filebrowserUploadUrl:'${pageContext.request.contextPath}/qna/fileupload'});</script>
+		<script>CKEDITOR.replace('qnaContent', {height:400, filebrowserUploadUrl:'${pageContext.request.contextPath}/qna/fileupload'});</script>
 		<br>
 		
 		<div class="mb-3">
@@ -81,5 +81,7 @@ a:active {
 	</form>
 	
 	</div>
+<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
 </body>
 </html>

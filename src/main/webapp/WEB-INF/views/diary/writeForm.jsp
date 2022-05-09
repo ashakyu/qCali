@@ -27,7 +27,7 @@
 			<tr>
 				<td>내용</td>
 				<td><form:textarea path="diaryContent" />
-				<script>CKEDITOR.replace('diaryContent');</script>
+				<script>CKEDITOR.replace('diaryContent',{height: 400});</script>
 				<form:errors path="diaryContent" /></td>
 
 			</tr>

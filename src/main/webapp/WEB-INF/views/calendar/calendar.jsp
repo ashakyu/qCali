@@ -32,53 +32,28 @@
         left: 'prev,next today',
         center: 'title'
       },
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
+//       navLinks: true, 
+//       selectable: true,
       selectMirror: true,
-//       select: function(arg) {
-//     	  console.log(arg);
-    	  
-//         var title = prompt('입력할 일정:');
-//         //tit;e값이 있을때, 화면에 calander.addEvent() json 형식으로 일정을 추가
-//         if (title) {
-//           calendar.addEvent({
-//             title: title,
-//             start: arg.start,
-//             end: arg.end,
-//             allDay: arg.allDay
-//           })
-//         }
-//         calendar.unselect()
-//       },
-      //있는 일정 클릭시 
+
       eventClick: function(arg) {
     	  
-//     	  console.log("#등록된 일정 클릭#")
-//      	  console.log(arg.event)
-// 		console.log(arg.event.start);
-//     	alert("Clicked on : " + arg.event.start);
 		var start = moment(arg.event.start).format('YYMMDD');
 		console.log(moment(start).format('YYMMDD'));
 		$.ajax({
 			type : 'POST',
 			url : '<c:url value="/board/listDay" />',
-//			datatype:"html",
 			dataType:'text',
 			data : 'date='+start,
 			async:false,
 			success:function(data){
-// 				console.log(data);
-// 				alert(data);
 				window.location.href='<c:url value="/board/listDay?date=" />'+data;
-				//location.replace('<c:url value="/board/listDay?{}"/>');
-				//window.location.href='<c:url value="board/listDay?date=start" />'
 			}
 		
 		})
       },
-      dayMaxEvents: true, // allow "more" link when too many events
+      dayMaxEvents: true,
       events:
-    	  //Ajax 데이터 불러올 부분
 	[
 	<c:forEach var="list" items= "${listCal}">
 			{

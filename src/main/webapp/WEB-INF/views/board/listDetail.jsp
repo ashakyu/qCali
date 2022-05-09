@@ -12,20 +12,6 @@
 	content="width=device-width, initial-scale=1">
 <title>QCali :: boardDetail</title>
 
-
-<!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-
-
 <style>
 .box {
 	width: 1300px;
@@ -207,23 +193,15 @@
 			});
 
 			//댓글 리스트 함수
-			function getreplylist() {
-				var replyurl = "${root}reply/";
-				var boardSeq = ${boardList.boardSeq};
-				var memberSeq = -1;
-				var adminAuthInfoCommand = window.sesstionStorage.getItem("adminAuthInfoCommand");
-				var memberLogin = window.sesstionStorage.getItem("memberLogin");
-				
-				
-				
-		if (adminAuthInfoCommand != null ) {
-			 memberSeq =  window.sesstionStorage.getItem("adminAuthInfoCommand.adminSeq");
-				
-			} 
-			
-			if (memberLogin != null){
-				 memberSeq =  window.sesstionStorage.getItem("memberLogin.memberSeq");
-			}
+         function getreplylist() {
+            var replyurl = "${root}reply/";
+            var boardSeq = ${boardList.boardSeq};
+            var memberSeq = -1;
+   
+
+            if(sessionStorage.getItem("memberLogin")) {
+                memberSeq =  window.sesstionStorage.getItem("memberLogin.memberSeq");
+            }
 			$.ajax({
 							url : replyurl + boardSeq,
 							type : 'POST',
@@ -244,15 +222,15 @@
 														htmls += '<div id="replySeq'+this.replySeq+'">';
 														htmls += '<br>작성자 : '
 																+ '<div class = "dropdown"> '
-														htmls += '<a href="#" class="dropbtn">'
+														htmls += '<a href="#" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">'
 																+ this.memberNickname;
-														htmls += '</a> <div class="dropdown-content">'
-														htmls += '<a href="${pageContext.request.contextPath}/board/memberArticle?memberSeq='
+														htmls += '</a> <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">'
+														htmls += '<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq='
 																+ this.memberSeq
-																+ '">게시물 보기</a>'
-														htmls += '<a href="${pageContext.request.contextPath }/diary/list/'+ this.memberSeq +'">일기장 보기</a>'
-														htmls += '<a href="#" onclick ="popUpInfo();">회원 정보 보기</a>'
-														htmls += '</div></div>'
+																+ '">게시물 보기</a></li>'
+														htmls += '<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/'+ this.memberSeq +'">Diary 보기</a></li>'
+														htmls += '<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>'
+														htmls += '</ul></div>'
 														htmls += '&nbsp;&nbsp;&nbsp;&nbsp;';
 														htmls += '작성 날짜 : '
 																+ this.replyRegDay;

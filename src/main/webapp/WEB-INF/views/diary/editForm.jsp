@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="<c:url value='/resources/static/js/ckeditor/ckeditor.js'/>"></script>
 </head>
 <body>
 
@@ -22,6 +24,7 @@
 			<tr>
 				<td>내용</td>
 				<td><textarea name="diaryContent">${diaryList.diaryContent}</textarea> 
+				<script>CKEDITOR.replace('diaryContent',{height: 400});</script>
 				<form:errors path="diaryContent" /></td>
 
 			</tr>

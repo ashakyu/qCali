@@ -12,16 +12,16 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+<!-- <link -->
+<!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" -->
+<!-- 	rel="stylesheet" -->
+<!-- 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" -->
+<!-- 	crossorigin="anonymous"> -->
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
+<!-- <script -->
+<!-- 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" -->
+<!-- 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" -->
+<!-- 	crossorigin="anonymous"></script> -->
 	
 <title>QCali :: BoardList</title>
 </head>
@@ -82,19 +82,24 @@
 					<td><a href="<c:url value='/board/detail?boardSeq=${list.boardSeq}'/>">${list.boardTitle}</a>
 
 					</td>
-							<td><c:if test="${empty list.memberNickname }">
-                  			탈퇴 회원
-            		   </c:if> <c:if test="${!empty list.memberNickname }">
-
+							<c:if test="${empty list.memberNickname }">
+                  			<td>탈퇴 회원</td>
+            		  	 	</c:if> 
+            		  	 	<c:if test="${!empty list.memberNickname }"><td>
 								<div class="dropdown">
-									<a href="#" class="dropbtn">${ list.memberNickname}</a>
-									<div class="dropdown-content">
-										<a
-											href="<c:url value='/board/memberArticle?memberSeq=${list.memberSeq }'/> ">게시물
-											보기</a> 
-											<a href="${pageContext.request.contextPath }/diary/list/${list.memberSeq}">일기장 보기</a>
-											<a href=# onclick="popUpInfo();">회원 정보 보기</a>
-										
+									<a href="#" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> ${ list.memberNickname}</a>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${list.memberSeq}">게시물 보기</a></li>
+									<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${list.memberSeq}">Diary 보기</a></li>
+					    			<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>
+									</ul>
+								</div></td>
+								</c:if>
+			
+					<td>${list.boardRegday}</td>
+					<td>${list.boardLike}</td>
+					<td>${list.boardCount}</td>
+				</tr>
 										<script type="text/javascript">
 											function popUpInfo() {
 												let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${list.memberSeq}";
@@ -103,14 +108,6 @@
 												window.open(url, name, specs);
 											}
 										</script>
-									</div>
-								</div>
-							</c:if></td>
-					<td>${list.boardRegday}</td>
-					<td>${list.boardLike}</td>
-					<td>${list.boardCount}</td>
-				</tr>
-
 			</c:forEach>
 
 		</c:if>

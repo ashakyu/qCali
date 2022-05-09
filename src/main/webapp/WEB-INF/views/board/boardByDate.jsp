@@ -5,30 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8" name="viewport"
 	content="width=device-width, initial-scale=1">
-<%--닉네임 선택시, 드롭박스 구현 --%>
-<link href="<c:url value='/resources/static/css/dropdown.css'/> "
-	rel="stylesheet" type="text/css">
-
 <%--질문 출력 css --%>
 <link href="<c:url value='/resources/static/css/question.css'/> "
 	rel="stylesheet" type="text/css">
-<!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-
+<link href="<c:url value='/resources/static/css/styles.css'/> " rel="stylesheet" type="text/css">
 <title>QCali :: BoardList By Date</title>
-
-
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
@@ -86,7 +70,7 @@
 						<th>TITLE</th>
 						<th>작성자</th>
 						<th>좋아요</th>
-						<th>카운트</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 
@@ -105,39 +89,28 @@
 								href="<c:url value='/board/detail?boardSeq=${list.boardSeq}'/>">${list.boardTitle}</a>
 
 							</td>
-
-							<td><c:if test="${empty list.memberNickname }">
-                  			탈퇴 회원
-            		   </c:if> <c:if test="${!empty list.memberNickname }">
-
-									<div class="dropdown">
-										<a href="#" class="dropbtn">${ list.memberNickname}</a>
-										<div class="dropdown-content">
-											<a
-												href="<c:url value='/board/memberArticle?memberSeq=${list.memberSeq }'/> ">게시물
-												보기</a> <a
-												href="${pageContext.request.contextPath }/diary/list/${list.memberSeq}">일기장
-												보기</a> <a
-												href="<c:url value='/board/memberArticle?memberSeq=${list.memberSeq }'/>"
-												onclick="popUpInfo();">회원 정보 보기</a>
-
-											<script type="text/javascript">
-												function popUpInfo() {
-													let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${list.memberSeq}";
-													let name = "Member 정보";
-													let specs = "height=300, width= 250, status = no, location= no, top=100, left=100";
-													window.open(url, name,
-															specs);
-												}
-											</script>
-										</div>
+							<c:if test="${empty list.memberSeq }"> <td>탈퇴 회원</td> </c:if> 
+							<c:if test="${!empty list.memberSeq }">
+								<td><div class="dropdown">
+									<a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">${list.memberNickname}</a>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+											<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${list.memberSeq}">게시물 보기</a></li>
+											<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${list.memberSeq}">Diary 보기</a></li>
+							   				<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>								
+							   			</ul>
 									</div>
-								</c:if></td>
-					
+								</td> </c:if>
 							<td>${list.boardLike}</td>
 							<td>${list.boardCount}</td>
 						</tr>
-
+						<script type="text/javascript">
+							function popUpInfo(){
+								let url = "${pageContext.request.contextPath}/member/popup?memberSeq=${list.memberSeq}";
+								let name = "Member 정보";
+								let specs = "height=350, width= 300, status = no, location= no, top=100, left=100";
+								window.open(url, name, specs);
+							}
+						</script>
 					</c:forEach>
 
 				</c:if>
@@ -163,5 +136,7 @@
 			</nav>
 
 		</div>
+<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
 </body>
 </html>
