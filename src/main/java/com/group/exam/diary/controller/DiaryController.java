@@ -246,7 +246,7 @@ public class DiaryController {
 	// 게시글 수정
 	@GetMapping(value = "/edit/{diarySeq}")
 	public String diaryEdit(@PathVariable Long diarySeq,
-			@ModelAttribute("DiaryUpdateCommand") DiaryUpdateCommand updateCommand, Model model, HttpSession session) {
+			@ModelAttribute("diaryData") DiaryUpdateCommand updateCommand, Model model, HttpSession session) {
 
 //			//login seq 와 요청된(작성)seq 비교
 //			if (diarySeqTest != updateCommand.getDiarySeq()) {
@@ -266,7 +266,7 @@ public class DiaryController {
 	// 게시글 수정
 	@PostMapping(value = "/edit/{diarySeq}")
 	public String diaryEdit(@PathVariable Long diarySeq,
-			@Valid @ModelAttribute("DiaryUpdateCommand") DiaryUpdateCommand updateCommand, BindingResult bindingResult,
+			@Valid @ModelAttribute("diaryData") DiaryUpdateCommand updateCommand, BindingResult bindingResult,
 			Model model, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
 		if (bindingResult.hasErrors()) {
 			// 공백일 경우 내용 다시 띄워주기

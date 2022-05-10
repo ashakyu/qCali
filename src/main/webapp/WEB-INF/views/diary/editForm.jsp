@@ -8,7 +8,8 @@
 <head>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <style>
 ul {
@@ -20,6 +21,29 @@ li {
 	float: left;
 	margin-left: 5px;
 }
+
+
+        table.table2{
+                border-collapse: separate;
+                border-spacing: 1px;
+                text-align: left;
+                line-height: 1.5;
+                border-top: 1px solid #ccc;
+                margin : 20px 10px;
+        }
+        table.table2 tr {
+                 width: 50px;
+                 padding: 10px;
+                font-weight: bold;
+                vertical-align: top;
+                border-bottom: 1px solid #ccc;
+        }
+        table.table2 td {
+                 width: 100px;
+                 padding: 10px;
+                 vertical-align: top;
+                 border-bottom: 1px solid #ccc;
+        }
 </style>
 <title>QCali :: 일기 작성</title>
 <script type="text/javascript"
@@ -29,41 +53,59 @@ li {
 <body>
 <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/main/sidebar_board.jsp"></jsp:include>
-<div class="container">
+<div class="container" style="text-align:center;">
 
 
 	<form:form commandName="diaryData" enctype="multipart/form-data">
-		<table>
+		<table style=" width:70%; border:0;" class = "table2">
 			<tr>
 				<td>제목</td>
-				<td><form:input path="diaryTitle" /> 
+				<td><form:input path="diaryTitle" value="${diaryList.diaryTitle }" size="30"/> 
 				<form:errors path="diaryTitle" /></td>
 
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><form:textarea path="diaryContent" />
-				<script>CKEDITOR.replace('diaryContent');</script>
+				<td><textarea name="diaryContent">${diaryList.diaryContent}</textarea>
+				<script>CKEDITOR.replace('diaryContent');</script> 
 				<form:errors path="diaryContent" /></td>
 
 			</tr>
 			<tr>
-				<td>파일 업로드</td>
-				<td><input class="form-control" type="file" name="img"></td>
+				<td>이미지 업로드</td>
+				<td>
+				<c:if test="${ empty diaryList.diaryImg ||  diaryList.diaryImg eq 'deleted'}">
+					<input class="form-control" type="file" name="img">
+				</c:if>
+				<c:if test="${ !empty diaryList.diaryImg}">
+				현재 이미지
+					<p style="text-align:center;">
+						<img src="/diaryImg${diaryList.diaryImg }" width="200" >
+					</p>
+					<input class="form-control" type="file" name="img">
+				</c:if>
+
+				</td>
+		
 			</tr>
 			<tr>
 				<td>공개여부</td>
 				<td>
+				<c:if test="${diaryList.diaryOpen == 'T' }">
 					<input type="radio" name="open" value="T" checked/>공개 
-					<input type="radio" name="open" value="F" />비공개				
+					<input type="radio" name="open" value="F" />비공개	
+				</c:if>	
+				<c:if test="${diaryList.diaryOpen == 'F' }">
+					<input type="radio" name="open" value="T" />공개 
+					<input type="radio" name="open" value="F" checked/>비공개	
+				</c:if>			
 				</td>
 
 			</tr>
 			<tr>
-				<td colspan="2" align="right"><input type="submit" value="글쓰기" class="btn btn-outline-info"/></td>
+				<td colspan="2" align="right"><input type="submit" value="글쓰기" class="w-btn w-btn-green"/></td>
 			</tr>
 		</table>
-				<input type="hidden" name="memberSeq" value="${memberLogin.memberSeq}">
 
 		
 	</form:form>

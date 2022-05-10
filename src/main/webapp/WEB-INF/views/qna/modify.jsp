@@ -27,6 +27,8 @@ a:active {
   text-decoration: none;
 }
 </style>
+<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <link href="<c:url value='/resources/static/css/styles.css'/> "
@@ -73,9 +75,9 @@ a:active {
 			<input class="form-control" type="file" name="uploadfile" />
 		</div>
 		
-		<button type="submit" class="btn btn-secondary m-1" style="float: right;">수정하기</button>
+		<button type="submit" class="w-btn w-btn-green" style="float: right;">수정하기</button>
 		&nbsp;&nbsp;
-		<button type="button" class="btn btn-outline-secondary m-1" style="float: right;"
+		<button type="button" class="w-btn w-btn-green" style="float: right;"
 		onclick="location.href='${pageContext.request.contextPath }/qna/detail?qnaSeq=${vo.qnaSeq }'">취소</button>
 		
 	</form>
