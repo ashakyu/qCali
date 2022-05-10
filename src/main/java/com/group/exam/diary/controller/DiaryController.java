@@ -286,23 +286,11 @@ public class DiaryController {
 
 			// 첨부파일 세팅
 			MultipartFile file = updateCommand.getImg();
-
-			// 파일명
-			String originalFileName = file.getOriginalFilename();
-
-			// 파일명 중 확장자만 추출
-			String originalFileExtension = FilenameUtils.getExtension(originalFileName); // 확장자 구하기
-
-			// 저장할때 쓸 파일명 랜덤생성 + 확장자
-			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + "." + originalFileExtension;
-
-			// 파일 저장을 위한 File 객체
-			String rootPath = request.getSession().getServletContext().getRealPath("/");
-
-			String attachPath = "resources/upload/";
-			file.transferTo(new File(rootPath + attachPath + storedFileName));
-
-			updateCommand.setDiaryImg(storedFileName); // 저장할 파일 (랜덤생성된)이름을 vo에 셋팅
+			if(!file.isEmpty()) {
+				updateCommand.setDiaryImg(diaryService.upload("diary", file, session));
+			}else{
+				updateCommand.setDiaryImg(null);
+			}
 
 			diaryService.updateDiary(updateCommand.getDiaryTitle(), updateCommand.getDiaryContent(), diarySeq,
 					updateCommand.getDiaryOpen(), updateCommand.getDiaryImg());
