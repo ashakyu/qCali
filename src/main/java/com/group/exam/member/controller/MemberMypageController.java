@@ -58,6 +58,13 @@ public class MemberMypageController {
 
 		// api 로그인 시, 비밀번호 확인 안하고 마이페이지 바로 이동.
 		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");
+		
+		// 로그인 X
+		if (command == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
 
 		if (command.getNaver().equals("T") || command.getKakao().equals("T")) {
 
@@ -84,11 +91,19 @@ public class MemberMypageController {
 	}
 	
 	@GetMapping(value = "/mypage")
-	public String confirmPwd(@RequestParam int page, @RequestParam int perPageNum,@RequestParam int memberSeq,  HttpSession session, Model model, Criteria cri) {
+	public String confirmPwd(@RequestParam int page, @RequestParam int perPageNum,@RequestParam Long memberSeq,  HttpSession session, Model model, Criteria cri) {
 
 		boolean confirmPW = true;
 		
 		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");
+		
+		// 로그인 X
+		if (command == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
+		
 		
 		// 마이페이지에 본인 쓴 글 바로 출력
 		int total = boardService.mylistCount(command.getMemberSeq());
@@ -113,6 +128,15 @@ public class MemberMypageController {
 		boolean confirmPW = false;
 
 		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");
+		
+		
+		// 로그인 X
+		if (command == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
+		
 
 		String encodePassword = memberService.findPwd(command.getMemberId()).getMemberPassword();
 		boolean pwdEncode = passwordEncoder.matches(memberPassword, encodePassword);
@@ -144,7 +168,16 @@ public class MemberMypageController {
 
 	// 비밀번호 변경
 	@GetMapping(value = "/mypage/changePwd")
-	public String changePwd() {
+	public String changePwd(HttpSession session, Model model) {
+		
+		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");
+		// 로그인 X
+		if (command == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
+		
 		return "/member/changePwdForm";
 	}
 
@@ -199,7 +232,14 @@ public class MemberMypageController {
 
 	// 닉네임 변경
 	@GetMapping(value = "/mypage/changeNickname")
-	public String changeNickname(HttpSession session) {
+	public String changeNickname(HttpSession session, Model model) {
+		LoginCommand command = (LoginCommand) session.getAttribute("memberLogin");
+		// 로그인 X
+		if (command == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
 
 		return "/member/changeNicknameForm";
 	}
