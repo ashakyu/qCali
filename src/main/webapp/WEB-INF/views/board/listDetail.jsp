@@ -18,6 +18,10 @@
 	margin: auto;
 }
 
+.reply_box {
+	text-align:center;
+}
+
 .board_title {
 	font-weight: 700;
 	font-size: 25pt;
@@ -38,13 +42,11 @@
 
 #reply {
 	display: block;
-	width: 400px;
+	width : 400px;
+	margin : auto;
 	border-bottom: 1px solid black;
 }
 
-#reply_content {
-	border: 1px solid black;
-}
 </style>
 </head>
 <body>
@@ -100,11 +102,6 @@
 
 
 
-
-
-
-
-
 		<div >
 			<a class="text-dark heart" style="text-decoration-line: none;"> <img
 				id="heart" src="" height="30px">
@@ -113,36 +110,28 @@
 
 
 
-
-
-
-
-		<!-- 댓글 입력 폼 -->
-		<br>
-
-
-
-				<!-- 댓글 입력 폼 -->
-   	<br><br><hr>
-	<h5>댓글 : [ ${replyTotal} ] 개</h5>&nbsp;&nbsp;
-	
-	<div class="col-md-6">
-		<label for="memberNickname" id="memberNickname">작성자 : ${memberLogin.memberNickname}</label><br/>
-		<label for="replyContent"> 댓글 : </label>
-		<textarea class="form-control" id="replyContent" name="replyContent"></textarea>
-		<button type="button" class="btn btn-default" id="replywriteBtn" name="replywriteBtn">댓글 작성</button>
-	</div>
-	
-	<div id="replyList" style="padding-bottom:10%;"></div>
-
-
-
-
+      	 <!-- 댓글 입력 폼 -->
+         <br>
+         <hr>
+         <br><br>
+         <h5 style="padding-bottom:3%; text-align:center;">댓글 : [${replyTotal}] 개</h5>
+         <div class="reply_box">
+         <table class="reply_box" width="100%">
+         <tr>
+         <td><div style="font-weight:bolder; font-size:30px;"><label for="memberNickname" id="memberNickname">${memberLogin.memberNickname}</label></div></td>
+         <td><div><textarea id="replyContent" name="replyContent" rows="4" cols="100"></textarea></div></td>
+         <td><button type="button" class="btn btn-default" id="replywriteBtn" name="replywriteBtn">댓글 등록</button></td>
+         </tr>
+         </table>
+         </div> <!-- reply_box end -->
+		 <br>
+		 <div id="replyList" class="reply_box" style="padding-bottom:10%;"></div>
 
 
 		
-</div>
-<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+		</div>
+		<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
 
 		<%--댓글 / 좋아요 관련 자바스크립트 --%>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -199,63 +188,49 @@
 
             if(sessionStorage.getItem("memberLogin")) {
                 memberSeq =  window.sesstionStorage.getItem("memberLogin.memberSeq");
+                console.log("타냐?");
             }
+            console.log("안타냐?");
+        	console.log(memberSeq);
 			$.ajax({
-							url : replyurl + boardSeq,
-							type : 'POST',
-							dataType : 'json',
+			url : replyurl + boardSeq,
+			type : 'POST',
+			dataType : 'json',
 
-							success : function(result) {
-								console.log(result);
-								var htmls = "";
+			success : function(result) {
+			
+				var htmls = "";
 
-								if (result.length < 1) {
-									htmls = "등록된 댓글이 없습니다.";
+				if (result.length < 1) {
+					htmls = "등록된 댓글이 없습니다.";
 
-								} else {
-									$(result)
-											.each(
-													function() {
-														htmls += '<div id="reply">'
-														htmls += '<div id="replySeq'+this.replySeq+'">';
-														htmls += '<br>작성자 : '
-																+ '<div class = "dropdown"> '
-														htmls += '<a href="#" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">'
-																+ this.memberNickname;
-														htmls += '</a> <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">'
-														htmls += '<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq='
-																+ this.memberSeq
-																+ '">게시물 보기</a></li>'
-														htmls += '<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/'+ this.memberSeq +'">Diary 보기</a></li>'
-														htmls += '<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>'
-														htmls += '</ul></div>'
-														htmls += '&nbsp;&nbsp;&nbsp;&nbsp;';
-														htmls += '작성 날짜 : '
-																+ this.replyRegDay;
-														htmls += '<br/><p>';
-														htmls += '댓글 내용 : &nbsp;&nbsp; <div id="reply_content">'
-																+ this.replyContent;
-														htmls += '</div></p>';
-														if (memberSeq == this.memberSeq) {
-															htmls += '<button type="button" class="btn btn-outline-success" onclick="updateviewBtn(\''
-																	+ this.replySeq
-																	+ '\', \''
-																	+ this.replyContent
-																	+ '\', \''
-																	+ this.memberNickname
-																	+ '\')">수정</button>&nbsp;&nbsp;';
-															htmls += '<button type="button" class="btn btn-outline-success" onclick="replyDeleteConfirm(\''
-																	+ this.replySeq
-																	+ '\')">삭제</button>';
-														}
-														htmls += '</div><br/>';
-														htmls += '</div>'
-													});
-								}
-								;
-								$("#replyList").html(htmls);
+				} else {
+					$(result).each(
+						function() {
+							htmls += '<div id="reply">'
+							htmls += '<div id="replySeq'+this.replySeq+'">'
+							htmls += '<br><br><div>작성자 : ' + '<div class = "dropdown"></div>'
+							htmls += '<a href="#" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">' + this.memberNickname;
+							htmls += '</a> <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">'
+							htmls += '<li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=' + this.memberSeq + '">게시물 보기</a></li>'
+							htmls += '<li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/'+ this.memberSeq +'">Diary 보기</a></li>'
+							htmls += '<li><a class="dropdown-item" href="#" onClick="popUpInfo();">회원 정보 보기</a></li>'
+							htmls += '</ul></div>'
+							htmls += '<div> 작성 날짜 : ' + this.replyRegDay;
+							htmls += '</div><p>';
+							htmls += '<div>' + this.replyContent;
+							htmls += '</div></p>';
+							if (memberSeq == this.memberSeq) {
+							htmls += '<button type="button" class="btn btn-default" onclick="updateviewBtn(\'' + this.replySeq + '\', \'' + this.replyContent + '\', \'' + this.memberNickname + '\')">수정</button>&nbsp;&nbsp;';
+							htmls += '<button type="button" class="btn btn-default" onclick="replyDeleteConfirm(\'' + this.replySeq + '\')">삭제</button>';
 							}
-						});
+							htmls += '</div><br>';
+							htmls += '</div>'
+							});
+					};
+					$("#replyList").html(htmls);
+					}
+				});
 			}
 
 			//댓글 저장 함수
@@ -301,9 +276,9 @@
 				htmls += '<textarea class="form-control" id="replyUpdateContent">';
 				htmls += replyContent;
 				htmls += '</textarea></p><br/>';
-				htmls += '<button type="button" class="btn btn-outline-success" onclick="replyUpdateConfirm(\''
+				htmls += '<button type="button" class="btn btn-default" onclick="replyUpdateConfirm(\''
 						+ replySeq + '\')">수정 완료</button>&nbsp;&nbsp;';
-				htmls += '<button type="button" class="btn btn-outline-success" onclick="getreplylist()">수정 취소</button>';
+				htmls += '<button type="button" class="btn btn-default" onclick="getreplylist()">수정 취소</button>';
 				htmls += '</div><br/>';
 				$('#replySeq' + replySeq).replaceWith(htmls);
 				$('#replySeq' + replySeq + '#replyContent').focus();
