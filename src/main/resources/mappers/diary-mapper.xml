@@ -45,7 +45,7 @@ from (select ROWNUM rn, D.DIARY_SEQ,
 D.DIARY_TITLE, to_char(D.DIARY_REG_DAY, 'yyyy.mm.dd') DIARY_REG_DAY, D.DIARY_LIKE, D.DIARY_COUNT,
 D.DIARY_OPEN, M.MEMBER_NICKNAME, M.MEMBER_SEQ  
 from MEMBER M join DIARY D on M.MEMBER_SEQ = D.MEMBER_SEQ 
-where M.member_seq = #{memberSeq}) where rn between #{rowStart} and #{rowEnd}
+where M.member_seq = #{memberSeq} order by diary_seq desc) where rn between #{rowStart} and #{rowEnd}
 ]]>
 	</select>
 

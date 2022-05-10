@@ -31,7 +31,7 @@ thead {
 	display: table-header-group;
 	vertical-align: middle;
 	border-color: inherit;
-	background: #fff;
+	background: #BFD9DB;
 }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
@@ -58,14 +58,14 @@ thead {
 						<section>
 							<div class="from-them">
 								<p>
-								<h5>Today Question</h5>${boardQuestion.questionContent}</p>
+								<h5>Today Question</h5>"${boardQuestion.questionContent}"</p>
 							</div>
 							<div class="clear"></div>
 							<div class="from-me">
 								<p>
 									<a
 										href="<c:url value='/board/write?questionSeq=${boardQuestion.questionSeq }'/>"
-										style="color: white">글쓰기answer</a>
+										style="color: white">글쓰기 Click!</a>
 								</p>
 							</div>
 							<div class="clear"></div>
@@ -138,7 +138,7 @@ thead {
 				</thead>
 					<c:if test="${ lastUrl eq 'todayArticle'}">
 					<c:forEach var="n" items="${notice }">
-						<tr style="background-color: #dcdcdc">
+						<tr style="background-color: #F0F0F0">
 							<td >${n.noticeSeq }</td>
 							<td colspan="2"><a href="<c:url value='/notice/read/${n.noticeSeq}' />">${n.noticeTitle}</a></td>
 							<td colspan="3">${n.noticeRegDay }</td>

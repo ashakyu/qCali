@@ -48,7 +48,7 @@
 <jsp:include page="/WEB-INF/views/main/sidebar_board.jsp"></jsp:include>
 
 
-<div class="container">
+<div class="container mt-5">
 <c:if test="${confirmPW == false}">
 
 
@@ -191,9 +191,6 @@
 
 </div>
 
-	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
-
-
-
+<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>
 </html>

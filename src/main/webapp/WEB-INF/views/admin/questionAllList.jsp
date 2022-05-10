@@ -65,19 +65,17 @@ a:active {
 						<td>${q.memberNickname }</td>
 					</c:otherwise>
 				</c:choose>
-			<td class="text-center"><button type="button" class="btn btn-danger" onClick="deleteConfirm();">삭제</button></td>
+			<td class="text-center"><button type="button" class="btn btn-danger" onClick="deleteConfirm(${q.questionSeq});">삭제</button></td>
 				</tr>
-			
-			
-				<script>
-		function deleteConfirm(){
+		<script>
+		function deleteConfirm(seq){
 			if(!confirm("정말 거부하시겠습니까?")){
 				return false;
 			}else{
-				location.href="<c:url value='/admin/question/delete?questionSeq='/>"+${q.questionSeq};
+				location.href="${pageContext.request.contextPath}/admin/question/delete?questionSeq="+seq;
 			}
 		}	
-		</script>
+		</script>	
 		</c:forEach>
 		</tbody>
 	</table>

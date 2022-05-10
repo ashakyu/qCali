@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+div.fc-event-title.fc-sticky{
+ text-align : right;
+}
+</style>
 <meta charset='utf-8' />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- fullcalendar CDN -->
@@ -57,9 +62,11 @@
 	[
 	<c:forEach var="list" items= "${listCal}">
 			{
-				title:+'${list.getCount()}',
-				start:'${list.getCalendarDay()}'
-				
+				title:'+'+${list.getCount()}+'개',
+				start:'${list.getCalendarDay()}', 
+				backgroundColor : "#ffffff", 
+                textColor : "#2a5555",
+                borderColor : "#2a5555",
 			},
 	</c:forEach>
 	]

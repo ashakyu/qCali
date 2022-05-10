@@ -46,7 +46,6 @@ a:active {
 
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <link href="<c:url value='/resources/static/css/styles.css'/> "
 	rel="stylesheet" type="text/css">
 
@@ -63,16 +62,21 @@ a:active {
 				<caption>게시물 보기       |   </caption>
 			</table>
 			<p class="board_title">${boards.boardTitle }</p>
-			<p class="board_info_box" style=" position: relative;  display: inline-block;">${boards.boardRegDay }   by</p><div class="dropdown" style=" position: relative;  display: inline-block;">
+			<p class="board_info_box" style=" position: relative;  display: inline-block;">${boards.boardRegDay } by<c:if test="${empty memberSeq }">
+			탈퇴한 회원
+			</c:if></p>
+			<c:if test="${!empty memberSeq }">
+			<div class="dropdown" style=" position: relative;  display: inline-block;">
 				<a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">${boards.memberNickname }</a>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 					    <li><a class="dropdown-item" href="${pageContext.request.contextPath }/diary/list/${boards.memberSeq}">Diary 보기</a></li>
 					    <li><a class="dropdown-item" href="${pageContext.request.contextPath }/board/memberArticle?memberSeq=${boards.memberSeq}">쓴 글 보기 </a></li>
 					  </ul>
 					</div>
+			</c:if>
 			<p class="board_tag">조회수 : <c:out value="${boards.boardCount }"/>,  좋아요 : <c:out value="${boards.boardLike }"/>
 			<hr>
-			<h5 class="text-muted">질문 : ${boards. questionContent}</h5>
+			<h5 class="text-muted">질문 : ${boards.questionContent}</h5>
 			<p>${boards.boardContent }</p>		
 		</div>
 
@@ -80,19 +84,18 @@ a:active {
 	
 		<div style="float: right;">
 
-		<button type="button"  class="btn btn-outline-danger" onClick="deleteConfirm();">글 삭제</button>
+		<button type="button" class="btn btn-outline-danger" onClick="deleteConfirm();">글 삭제</button>
+			</div>
 		</div>
 	</div>
-		<script>
+			<script>
 			function deleteConfirm(){
 				if(!confirm("정말 삭제하시겠습니까?")){
 				return false;
+				}else{
+				location.href="${pageContext.request.contextPath}/admin/board/delete?boardSeq="+${boards.boardSeq};
+					}
 				}
-				else{
-				location.href="<c:url value='/admin/board/delete?boardSeq='/>"+${boards.boardSeq};
-				}
-			}
 			</script>
-		</div>
 </body>
 </html>

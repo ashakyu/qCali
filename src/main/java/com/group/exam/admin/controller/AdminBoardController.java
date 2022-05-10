@@ -52,9 +52,6 @@ public class AdminBoardController {
 			return "redirect:/index";
 		}else {
 		AdminBoardCommand boards = adminService.selectBybseq(boardSeq);
-		if(boards ==null) {
-			//예외처리
-		}
 		model.addAttribute("boards", boards);
 		return "/admin/boarddetail";
 		}

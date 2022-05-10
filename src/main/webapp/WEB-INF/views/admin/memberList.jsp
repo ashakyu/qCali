@@ -75,20 +75,17 @@ a:active {
 			<td>${m.memberRegDay }</td>
 			<td>${m.memberAuth }</td>
 			<td>${m.memberLevel}</td>
-			<td class="text-center"><button type="button" class="btn btn-danger" onclick="deleteConfirm();">삭제</button></td>
-				
-	
+			<td class="text-center"><button type="button" class="btn btn-danger" onclick="deleteConfirm(${m.memberSeq});">삭제</button></td>
 		</tr>
 		<script type="text/javascript">
-		function deleteConfirm(){
+		function deleteConfirm(seq){
 		if(!confirm("정말 삭제하시겠습니까??")){
 			return false;
 		}else{
-			location.href="<c:url value='/admin/member/delete?memberSeq='/>"+${m.memberSeq};
-			
-		}
-	}
-</script>
+			location.href="${pageContext.request.contextPath}/admin/member/delete?memberSeq="+seq;
+				}
+			}
+		</script>
 		</c:forEach>
 		</tbody>
 	</table>

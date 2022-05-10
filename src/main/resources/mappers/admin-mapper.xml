@@ -98,7 +98,7 @@ where no between #{rowStart} and #{rowEnd} ]]>
 			B.BOARD_SEQ, TO_CHAR(B.BOARD_REG_DAY,'yyyy.mm.dd') BOARD_REG_DAY
 			from MEMBER M
 			right join BOARD B on M.MEMBER_SEQ = B.MEMBER_SEQ
-			join QUESTION Q on B.QUESTION_SEQ = Q.QUESTION_SEQ
+			left join QUESTION Q on B.QUESTION_SEQ = Q.QUESTION_SEQ
 			where B.BOARD_SEQ = #{boardSeq}
 		]]>
 	</select>

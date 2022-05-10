@@ -66,7 +66,7 @@ public class AdminQuestionController {
 	@RequestMapping("/question/delete")
 	public String questionDelete(@RequestParam("questionSeq") Long questionSeq) {
 		adminService.questionDelete(questionSeq);
-		return "redirect:/admin/question/list";
+		return "redirect:/admin/questionAll";
 	}
 	//질문 추가하기
 	@RequestMapping(value ="/question/questionAdd" , method=RequestMethod.POST)
