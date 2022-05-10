@@ -131,7 +131,7 @@ a:active {
 
 	</c:if>
 
-	<c:if test="${!empty memberLogin }">
+	<c:if test="${!empty memberLogin && memberLogin.memberSeq == vo.memberSeq }">
 		<button type="button" class ="w-btn w-btn-gray" 
 		onclick="deleteConfirm();"style="float:right;">글 삭제</button>
 		<button type="button" class="w-btn w-btn-gray" style="float:right;"
@@ -149,8 +149,6 @@ a:active {
 		}
 	}
 </script>
-
-<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 
 </body>
 </html>

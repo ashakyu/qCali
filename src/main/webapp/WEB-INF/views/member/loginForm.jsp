@@ -87,10 +87,10 @@
 
 
 							<hr>
-							<a href="${naverLoginURL }">
+							<a href="${naverLoginURL}" style="text-decoration: none;">
 								   <img src="<c:url value='/resources'/>/static/images/btnG_완성형.png" width="180px"	/>
-							</a>&nbsp; &nbsp; &nbsp; &nbsp;
-							<a href="${kakao_url}" ><img src="<c:url value='/resources/static/images/kakao_login_medium_narrow.png'/> "/>
+							</a>	&nbsp; &nbsp; &nbsp; &nbsp;
+							<a href="${kakao_url}"><img src="<c:url value='/resources/static/images/kakao_login_medium_narrow.png'/>"/>
 								 
 							</a>
 
