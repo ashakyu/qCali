@@ -7,6 +7,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
+	
 <style>
 .box {
    width: 1300px;
@@ -100,7 +104,7 @@
          
           <div style="text-align: right;">
 			<a class="text-dark heart" style="text-decoration-line: none;">
-				<img id="heart" src="" height="30px">
+				<img id="heart" src="" height="35px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</a>
 		</div>	
 		</c:if> 
@@ -109,16 +113,16 @@
  <div style="margin-top: 2%; padding-left: 20%; float: right;">
         
 	         <c:if test="${myArticle == true}">
-	            <button type="button" class="btn btn-outline-info"
+	            <button type="button" class="w-btn w-btn-gray"
 	               onclick="location.href='<c:url value="/diary/edit/${diaryList.diarySeq}"/>'">일기 수정</button>
-	            <button type="button" class="btn btn-outline-info"
+	            <button type="button" class="w-btn w-btn-gray"
 	               onClick="delete_button();">일기 삭제</button>
 	            <c:if test="${!empty diaryList.diaryImg }">
-	               <button type="button" class="btn btn-outline-info"
+	               <button type="button" class="w-btn w-btn-gray"
 	               onClick="deleteImg_button();">이미지 삭제</button>     
 	            </c:if>    
 	         </c:if>
-	         <button type="button" class="btn btn-outline-info"
+	         <button type="button" class="w-btn w-btn-gray"
 	               onclick="location.href='<c:url value="/diary/list/${diaryList.memberSeq}"/>'">일기장 가기</button>
        	</div>      			
 </div>	

@@ -86,6 +86,10 @@ public class BoardListDetailController {
 		int boardlike = boardService.getBoardLike(likeVo);
 
 		model.addAttribute("boardHeart", boardlike);
+		
+		int replyCount = boardService.replyCount(boardSeq);
+		
+		model.addAttribute("replyTotal", replyCount);
 
 	
 		return "board/listDetail";
