@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+</style>
 <meta charset="UTF-8">
 <title>MenuBar</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -12,9 +13,9 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/board/todayArticle">
-				<img class="d-inline-block align-text-top" src="${pageContext.request.contextPath }/resources/static/images/logo.svg" width="" height="">
-			</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/board/todayArticle" style="font-color:#2a5555;">
+				QCali :: 
+			</a>	
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarText"
 				aria-controls="navbarText" aria-expanded="false"
