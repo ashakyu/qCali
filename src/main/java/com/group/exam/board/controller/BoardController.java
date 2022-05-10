@@ -211,6 +211,15 @@ public class BoardController {
 		 * - int 형의 경우 (defaultValue="0")
 		 * 
 		 */
+		
+		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
+		// 로그인 X
+		if (loginMember == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
+
 
 		int total = boardService.listCount();
 
@@ -265,7 +274,22 @@ public class BoardController {
 	@GetMapping(value = "/edit")
 	public String boardEdit(@ModelAttribute("boardEditData") BoardVo boardVo, HttpSession session, Model model) {
 
-		model.addAttribute("articleInfo", boardService.boardListDetail(boardVo.getBoardSeq()));
+		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
+		// 로그인 X
+		if (loginMember == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
+		
+		BoardlistCommand articleInfo =  boardService.boardListDetail(boardVo.getBoardSeq());
+
+		model.addAttribute("articleInfo", articleInfo);
+		
+		if (loginMember.getMemberSeq() == articleInfo.getMemberSeq()) {
+			model.addAttribute("msg", "잘못된 접근");
+			return "member/member_alert/alertGoBoardList";
+		}
 		return "board/editForm";
 	}
 
@@ -325,6 +349,15 @@ public class BoardController {
 	@GetMapping(value = "/memberArticle")
 	public String boardListMemberArticle(@RequestParam("memberSeq") Long memberSeq, Model model, Criteria cri,
 			HttpSession session) {
+		
+		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
+		
+		// 로그인 X
+		if (loginMember == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
 
 		int total = boardService.mylistCount(memberSeq);
 
@@ -345,6 +378,16 @@ public class BoardController {
 	@GetMapping(value = "/todayArticle")
 	public String boardListTodayArticle(Model model, Criteria cri, HttpSession session) {
 
+		
+		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
+		
+		// 로그인 X
+		if (loginMember == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
+		
 		int total = boardService.boardTodayCount();
 
 		List<BoardlistCommand> list = boardService.boardListTodayArticle(cri);
@@ -391,7 +434,16 @@ public class BoardController {
 	// 닉네임 , 제목으로 검색
 	@GetMapping(value = "/search")
 	public String boardSearchList(@RequestParam("searchOption") String searchOption,
-			@RequestParam("searchWord") String searchWord, Model model, Criteria cri) {
+			@RequestParam("searchWord") String searchWord, Model model, Criteria cri,  HttpSession session) {
+		
+		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
+		
+		// 로그인 X
+		if (loginMember == null) {
+
+			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
+			return "member/member_alert/alertGoMain";
+		}
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 

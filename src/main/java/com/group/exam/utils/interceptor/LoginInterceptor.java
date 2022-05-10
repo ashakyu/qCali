@@ -12,7 +12,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		String path = request.getRequestURI();
-		if(path.contains("/index")|| path.contains("/login") || path.contains("/insert") || path.contains("/findPwd") || path.contains("/callback") ) {
+		if(path.contains("/index")|| path.contains("/login") || path.contains("/insert") || path.contains("/findPwd") || path.contains("/callback") || path.contains("EmailConfirm") ) {
 			return true;
 		}else if(session.getAttribute("adminAuthInfoCommand") == null 
 				&& session.getAttribute("memberLogin") == null) {
