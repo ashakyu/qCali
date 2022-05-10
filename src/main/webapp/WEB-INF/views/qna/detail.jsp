@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <link href="<c:url value='/resources/static/css/dropdown.css'/> "
 	rel="stylesheet" type="text/css">
+	<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
 <style>
 table {
 	width: 50%;
@@ -35,6 +37,7 @@ a:active {
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <link href="<c:url value='/resources/static/css/styles.css'/> "
 	rel="stylesheet" type="text/css">
+	
 <title>QCali :: 문의사항 </title>
 </head>
 <body class="sb-nav-fixed">
@@ -113,25 +116,25 @@ a:active {
 	</div>			
 	
 	<br>
-	<c:if test="${!empty admin }">
+	<c:if test="${!empty adminAuthInfoCommand }">
 		<c:if test="${ vo.qnaIndent == 0}">
-			<button type="button" class="btn btn-dark m-1" style="float:right;"
+			<button type="button" class="w-btn w-btn-gray" style="float:right;"
 			onClick="location.href='${pageContext.request.contextPath}/qna/reply?qnaSeq=${vo.qnaSeq }'">답글쓰기 
 			</button>
 		</c:if>
 
-		<button type="button" class ="btn btn-outline-dark m-1" 
+		<button type="button" class ="w-btn w-btn-gray" 
 		onclick="deleteConfirm();"style="float:right;">글 삭제</button>
 
-		<button type="button" class="btn btn-outline-dark m-1" style="float:right;"
+		<button type="button" class="w-btn w-btn-gray" style="float:right;"
 		onclick="location.href='${pageContext.request.contextPath}/qna/modify?qnaSeq=${vo.qnaSeq }'">글 수정</button>
 
 	</c:if>
 
-	<c:if test="${!empty member }">
-		<button type="button" class ="btn btn-dark m-1" 
+	<c:if test="${!empty memberLogin }">
+		<button type="button" class ="w-btn w-btn-gray" 
 		onclick="deleteConfirm();"style="float:right;">글 삭제</button>
-		<button type="button" class="btn btn-outline-dark m-1" style="float:right;"
+		<button type="button" class="w-btn w-btn-gray" style="float:right;"
 		onclick="location.href='${pageContext.request.contextPath}/qna/modify?qnaSeq=${vo.qnaSeq }'">글 수정</button>
 	</c:if>
 	</div>

@@ -4,14 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.box {
-  width: 1300px;
-  padding-top: 3%;
-  padding-left: 16%;
-  }
-  
-</style>
+
 <link href="<c:url value='/resources/static/css/button.css'/> "
 	rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
@@ -21,12 +14,12 @@
 <!-- bootstrap css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-<body>
+<body >
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/main/sidebar_board.jsp"></jsp:include>
 	
-	<div class="box" class="container">
-		<table class="table table-sm caption-top">
+	<div class="container mt-5">
+		<table class="table table-hover">
 		<caption>공지사항    |  게시물  총 ${boardTotal} 개</caption>
 		<thead class="table-light">
 			<tr>

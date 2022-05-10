@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-
+<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
+	
 <!-- <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
 <link href="<c:url value='/resources/static/css/styles.css'/>" rel="stylesheet" type="text/css">
 </head>
@@ -101,7 +103,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<button type="button" class="btn btn-secondary" style="float: right;"
+	<button type="button" class="w-btn w-btn-green" style="float: right;"
 	onclick="location.href='${pageContext.request.contextPath}/qna/write'" >문의하기</button>
 	
 	<nav aria-label="Page navigation example">
