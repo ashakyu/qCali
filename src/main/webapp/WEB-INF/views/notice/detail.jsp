@@ -27,6 +27,8 @@
 }
 </style>
 <meta charset="UTF-8">
+<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
 <title>공지 사항 Detail</title>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -49,22 +51,12 @@
 		
 		<div style="margin-top:2%; padding-left:20%; padding-bottom:10%; float:right;">
 			<c:if test="${adminAuthInfoCommand != null}">
-			<button type="button" class="btn btn-outline-info" id="noticeUpdate" onclick="window:location='<c:url value='/notice/update?noticeSeq=${notice.noticeSeq}'/>'">수정</button>
-			<button type="button" class="btn btn-outline-info" onClick="deleteConfirm();">삭제</button>
-			<input type="button" class="btn btn-outline-info" value="목록" onclick="location.href='<c:url value='/notice/list'/>'">
+			<button type="button" class="w-btn w-btn-green" id="noticeUpdate" onclick="window:location='<c:url value='/notice/update?noticeSeq=${notice.noticeSeq}'/>'">수정</button>
+			<button type="button" class="w-btn w-btn-green" onClick="deleteConfirm();">삭제</button>
+			<input type="button" class="w-btn w-btn-green" value="목록" onclick="location.href='<c:url value='/notice/list'/>'">
 			</c:if>
 		</div>
-	
-	<script>
-		function deleteConfirm(){
-			if(!confirm("정말 삭제하시겠습니까?")){
-				return false;
-			}
-			else{
-				location.href="<c:url value='/notice/delete?noticeSeq='/>"+${notice.noticeSeq};
-			}
-		}
-	</script>
-   </div>
+		</div>
+		
   </body>
 </html>

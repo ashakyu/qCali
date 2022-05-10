@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.group.exam.admin.command.AdminAuthInfoCommand;
 import com.group.exam.board.command.BoardlistCommand;
 import com.group.exam.board.command.BoardupdateCommand;
 import com.group.exam.board.command.QuestionAdayCommand;
@@ -213,9 +214,10 @@ public class BoardController {
 		 */
 		
 		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
-		// 로그인 X
-		if (loginMember == null) {
-
+		AdminAuthInfoCommand adminAuthInfoCommand = (AdminAuthInfoCommand) session.getAttribute("adminAuthInfoCommand");
+	
+		// 로그인 세션 없을 때 ->main
+		if (loginMember == null && adminAuthInfoCommand == null) {
 			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
 			return "member/member_alert/alertGoMain";
 		}
@@ -285,8 +287,9 @@ public class BoardController {
 		BoardlistCommand articleInfo =  boardService.boardListDetail(boardVo.getBoardSeq());
 
 		model.addAttribute("articleInfo", articleInfo);
-		
-		if (loginMember.getMemberSeq() == articleInfo.getMemberSeq()) {
+		System.out.println("ddddddddd " + loginMember);
+		System.out.println("dd" + articleInfo.toString());
+		if (loginMember.getMemberSeq().equals( articleInfo.getMemberSeq()) == false) {
 			model.addAttribute("msg", "잘못된 접근");
 			return "member/member_alert/alertGoBoardList";
 		}
@@ -351,10 +354,10 @@ public class BoardController {
 			HttpSession session) {
 		
 		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
-		
-		// 로그인 X
-		if (loginMember == null) {
-
+		AdminAuthInfoCommand adminAuthInfoCommand = (AdminAuthInfoCommand) session.getAttribute("adminAuthInfoCommand");
+	
+		// 로그인 세션 없을 때 ->main
+		if (loginMember == null && adminAuthInfoCommand == null) {
 			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
 			return "member/member_alert/alertGoMain";
 		}
@@ -380,10 +383,10 @@ public class BoardController {
 
 		
 		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
-		
-		// 로그인 X
-		if (loginMember == null) {
-
+		AdminAuthInfoCommand adminAuthInfoCommand = (AdminAuthInfoCommand) session.getAttribute("adminAuthInfoCommand");
+	
+		// 로그인 세션 없을 때 ->main
+		if (loginMember == null && adminAuthInfoCommand == null) {
 			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
 			return "member/member_alert/alertGoMain";
 		}
@@ -437,10 +440,10 @@ public class BoardController {
 			@RequestParam("searchWord") String searchWord, Model model, Criteria cri,  HttpSession session) {
 		
 		LoginCommand loginMember = (LoginCommand) session.getAttribute("memberLogin");
-		
-		// 로그인 X
-		if (loginMember == null) {
-
+		AdminAuthInfoCommand adminAuthInfoCommand = (AdminAuthInfoCommand) session.getAttribute("adminAuthInfoCommand");
+	
+		// 로그인 세션 없을 때 ->main
+		if (loginMember == null && adminAuthInfoCommand == null) {
 			model.addAttribute("msg", "로그인이 후에 이용 가능합니다.");
 			return "member/member_alert/alertGoMain";
 		}

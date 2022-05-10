@@ -27,6 +27,10 @@
 }
 </style>
 <meta charset="UTF-8">
+
+<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
+	
 <title>공지 사항 Detail Update</title>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -48,14 +52,16 @@
         	<p class="board_info_box">${notice.noticeRegDay} by <a>관리자</a></p>
         	<hr><p><textarea name="noticeContent">${notice.noticeContent}</textarea>
         			<script>
-						CKEDITOR.replace('noticeContent',{filebrowserUploadUrl : '${pageContext.request.contextPath}/notice/fileupload'});
+						CKEDITOR.replace('noticeContent',{
+							height:400,
+							filebrowserUploadUrl : '${pageContext.request.contextPath}/notice/fileupload'});
 					</script></p>
     	</div>
 		
 		<div style="margin-top:2%; padding-left:20%; padding-bottom:10%; float:right;">
 			<c:if test="${adminAuthInfoCommand != null}">
-			<input type="submit" class="btn btn-outline-info" value="수정하기" onclick="updateConfirm()"/>
-			<input type="button" class="btn btn-outline-info" value="수정취소" onclick="updateNoConfirm()">
+			<input type="submit" class="w-btn w-btn-green" value="수정하기" onclick="updateConfirm()"/>
+			<input type="button" class="w-btn w-btn-green" value="수정취소" onclick="updateNoConfirm()">
 			</c:if>
 		</div>
 	

@@ -9,8 +9,11 @@
   width: 1300px;
   padding-top: 3%;
   padding-left: 16%;
-}
+  }
+  
 </style>
+<link href="<c:url value='/resources/static/css/button.css'/> "
+	rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>공지 사항 리스트</title>
 <!-- jQuery -->
@@ -35,7 +38,7 @@
 		<tbody>
 			<c:forEach var ="notice" items="${notice}" varStatus="loop">
 			<tr>
-				<th>${notice.rn}</th>
+				<th>${notice.noticeSeq}</th>
 				<td><a href="<c:url value="/notice/read/${notice.noticeSeq}"/>">${notice.noticeTitle}</a></td>
 				<td>${notice.noticeRegDay}</td>
 			</tr>
@@ -44,26 +47,33 @@
 		</table>
 		<div class="d-grid gap-2 d-md-block" style="float:right">
 			<c:if test="${adminAuthInfoCommand != null }">
-			<input type="button" value="글쓰기" class="btn btn-outline-info" onclick="location.href='<c:url value="/notice/write"/>'">
+			<input type="button" value="글쓰기" class="w-btn w-btn-green" onclick="location.href='<c:url value="/notice/write"/>'">
 			</c:if>
-			<input type="button" value="돌아가기" class="btn btn-outline-info" onclick="location.href='<c:url value="/board/list"/>'">  	
+			<input type="button" value="돌아가기" class="w-btn w-btn-green" onclick="location.href='<c:url value="/board/list"/>'">  	
 		</div>
 
-		<div> <!-- 페이징 처리 안됨 -->
-	  		<ul class="pagination pagination-sm">
-	    	<c:if test="${pageMaker.prev}">
-	    		<li class="page-item disabled"><a class="page-link" href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-	    	</c:if> 
-	
-	    	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-	    		<li class="page-item active"><a class="page-link" href="list${pageMaker.makeQuery(idx)}">${idx}</a></li>
-	    	</c:forEach>
-	
-	    	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	    		<li class="page-item"><a class="page-link" href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-	    	</c:if> 
-	  		</ul>
-		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+
+				<c:if test="${pageMaker.prev }">
+					<li class="page-item disabled"><a class="page-link"
+						href="list${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+				</c:if>
+
+				<c:forEach var="currentPage" begin="${pageMaker.startPage }"
+					end="${pageMaker.endPage }">
+					<li class="page-item"
+						<c:out value="${pageMaker.cri.page == currentPage ? 'class=active' : ''}"/>><a
+						class="page-link" href="list${pageMaker.makeQuery(currentPage) }">${currentPage }</a></li>
+				</c:forEach>
+
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+					<li class="page-item"><a class="page-link"
+						href="list${pageMaker.makeQuery(pageMaker.endPage + 1) }">다음</a></li>
+				</c:if>
+			</ul>
+		</nav>
+	</div>
 	</div>
   </body>
 </html>
