@@ -135,9 +135,7 @@ a:active {
 			   			</ul>
 					</div>
 				</td>
-				</c:if>
-					
-					<td>${r.memberNickname }</td>
+				</c:if>					
 					<td>${r.count }개</td>
 				</tr>
 			</c:forEach>

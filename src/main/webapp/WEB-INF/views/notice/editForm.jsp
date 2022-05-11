@@ -48,7 +48,7 @@
 			<table class="table table-sm caption-top">
 				<caption>공지사항    |  ${notice.noticeSeq} 번째 글 수정</caption>
 			</table>
-        	<p class="board_title"><input type="text" name="noticeTitle" value="${notice.noticeTitle}" /></p>
+        	<p class="board_title"><input type="text" class="form-control" name="noticeTitle" value="${notice.noticeTitle}" size="30" maxlength="50"></p>
         	<p class="board_info_box">${notice.noticeRegDay} by <a>관리자</a></p>
         	<hr><p><textarea name="noticeContent">${notice.noticeContent}</textarea>
         			<script>

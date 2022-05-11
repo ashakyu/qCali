@@ -126,8 +126,6 @@ a:active {
 		<button type="button" class ="w-btn w-btn-gray" 
 		onclick="deleteConfirm();"style="float:right;">글 삭제</button>
 
-		<button type="button" class="w-btn w-btn-gray" style="float:right;"
-		onclick="location.href='${pageContext.request.contextPath}/qna/modify?qnaSeq=${vo.qnaSeq }'">글 수정</button>
 
 	</c:if>
 

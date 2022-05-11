@@ -35,7 +35,7 @@
 	   		  			<span class="navbar-text">
 	   		  				관리자 님
 	   		  			</span>
-  						<a class="nav-link" href="${pageContext.request.contextPath }/admin/logout">로그아웃</a>
+  						<a class="nav-link" href="${pageContext.request.contextPath }/admin/logout" style="font-color: #ffffff8c;">로그아웃</a>
 					</c:if>     
  			     </ul>
    			 </div>

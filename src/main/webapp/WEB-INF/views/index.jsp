@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-<title>QCali :: 마음을 건들이다</title>
+<title>QCali :: 마음을 건드리다</title>
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" />
 <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" />
@@ -28,7 +28,7 @@
                 <div class="container-fluid px-5 px-lg-0">
                     <h1 class="fst-italic lh-2 mb-2">Once a day,<br>
                     Write<br>your daily Life..</h1>
-						<p class="mb-5"> <strong>QCali</strong>는 Question의 Calendar의 합성어입니다.<br>당신으의 마음을 편히 털어 놓을 수 있습니다.<br> 하루에 한 번 일상의 소중함을 기록하세요!</p>
+						<p class="mb-5"> <strong>QCali</strong>는 Question과 Calendar의 합성어입니다.<br>당신의 마음을 편히 털어 놓을 수 있습니다.<br> 하루에 한 번 일상의 소중함을 기록하세요!</p>
 
                             </div>
                         <div class="container">

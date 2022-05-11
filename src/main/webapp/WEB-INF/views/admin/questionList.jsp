@@ -26,7 +26,6 @@ a:active {
 }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <link href="<c:url value='/resources/static/css/styles.css'/> "
 	rel="stylesheet" type="text/css">
 
@@ -100,7 +99,7 @@ a:active {
 			if(!confirm("정말 거부하시겠습니까?")){
 				return false;
 			}else{
-				location.href="<c:url value='/admin/question/delete?questionSeq='/>"+${q.questionSeq};
+				location.href="${pageContext.request.contextPath}/admin/question/delete?questionSeq=+${q.questionSeq}";
 			}
 		}
 		
@@ -108,7 +107,7 @@ a:active {
 			if(!confirm("정말 승인하시겠습니까?")){
 				return false;
 			}else{
-				location.href="<c:url value='/admin/question/approve?questionSeq='/>"+${q.questionSeq};
+				location.href="${pageContext.request.contextPath}/admin/question/approve?questionSeq=${q.questionSeq}";
 			}
 		}
 		</script>

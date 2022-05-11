@@ -60,7 +60,6 @@ a:active {
 	
 	<button type="submit" class="w-btn w-btn-green" style="float: right;">답변하기</button>
 	</form>
-<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 
 </body>
 </html>
