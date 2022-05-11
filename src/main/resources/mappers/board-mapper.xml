@@ -30,8 +30,7 @@
 	</insert>
 
 	<select id="currentBoardSeq" resultType="Long">
-		select B_SEQ.currval from dual
-
+		SELECT LAST_NUMBER-1 FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'B_SEQ'
 		<!-- SELECT LAST_NUMBER-1 FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'B_SEQ' -->
 
 	</select>
@@ -58,7 +57,7 @@
 	
 <![CDATA[ select * from 
                 (select rownum as rn, BOARD_SEQ ,BOARD_TITLE, MEMBER_NICKNAME, BOARD_COUNT, BOARD_LIKE, MEMBER_SEQ,
-                TO_CHAR(BOARD_REG_DAY,'yyyy.mm.dd') BOARD_REG_DAY  from 
+                TO_CHAR(BOARD_REG_DAY,'yy.mm.dd') BOARD_REG_DAY  from 
                     (select B.BOARD_SEQ ,B.BOARD_TITLE, M.MEMBER_NICKNAME, B.BOARD_COUNT, B.BOARD_LIKE, M.MEMBER_SEQ,
                B.BOARD_REG_DAY  from MEMBER M 
                     right join BOARD B on B.MEMBER_SEQ = M.MEMBER_SEQ order by board_seq desc) 
