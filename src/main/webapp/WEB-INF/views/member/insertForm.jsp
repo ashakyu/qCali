@@ -54,20 +54,20 @@
 	function idCheck() {
 		var str = document.getElementById('exampleInputEmail').value;
 		var pattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+	
 		if (!pattern.test(str)) {
 			document.getElementById('idSame').innerHTML = '형식에 맞게 입력하세요.';
 			document.getElementById('idSame').style.color = 'red';
 		} else {
 			document.getElementById('idSame').innerHTML = '';
-			$
-					.ajax({
+			$.ajax({
 						url : "/exam/member/idDup",
 						type : "POST",
 						dataType : "JSON",
-						data : {
-							"memberId" : $("#exampleInputEmail").val()
-						},
+						data : {"memberId" : $("#exampleInputEmail").val()},
+						
 						success : function(data) {
+							console.log(data);
 							if (data == 1) {
 								document.getElementById('idSame').innerHTML = '사용할 수 없는 이메일 입니다.';
 								document.getElementById('idSame').style.color = 'red';
@@ -85,8 +85,7 @@
 	}
 
 	function nickCheck() {
-		$
-				.ajax({
+		$.ajax({
 					url : "/exam/member/nicknameDup",
 					type : "POST",
 					dataType : "JSON",
