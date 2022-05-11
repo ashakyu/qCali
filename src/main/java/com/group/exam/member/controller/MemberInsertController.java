@@ -105,6 +105,7 @@ public class MemberInsertController {
 	@RequestMapping(value = "/member/idDup", method = RequestMethod.POST)
 	public int idDup(@ModelAttribute("InsertCommand") InsertCommand insertCommand) {
 		String memberId = insertCommand.getMemberId();
+		System.out.println("???????" + memberId);
 
 		return memberService.idDup(memberId);
 
