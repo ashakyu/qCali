@@ -5,13 +5,13 @@
 
 
 <mapper namespace="CalendarDao">
-	<select id="calendarList"
-		resultType="com.group.exam.calendar.vo.CalendarVo">
-		select rownum, calendar.calendar_seq, calendar.board_seq, 
-		to_char(calendar.calendar_day, 'yyyy-mm-dd') calendar_day,
-		(select count(*) from board where
-		to_char(board.board_reg_day,'yymmdd') =
-		to_char(calendar.calendar_day,'yymmdd')) as count from calendar where rownum = 1
+	<select id="calendarList" resultType="com.group.exam.calendar.vo.CalendarVo">
+	
+	<![CDATA[ select distinct to_char(calendar.calendar_day, 'yyyy-mm-dd') calendar_day,
+    (select count(*) from board where
+    to_char(board.board_reg_day,'yymmdd') =
+    to_char(calendar.calendar_day,'yymmdd')) as count from calendar ]]>
+
 	</select>
 
 	<select id="boardByDate" parameterType="java.util.HashMap"
@@ -26,7 +26,6 @@
                 order by rownum)
           where rn BETWEEN  #{rowStart} and #{rowEnd}
 
- 			 
 		]]>
 	</select>
 	<select id="boardByDateTotal" resultType="Integer">
