@@ -10,7 +10,7 @@
 <title>QCali :: footer</title>
 </head>
 <body>
-
+<br><br>
 <!--Basic structure of footer-->
 <footer>
 
